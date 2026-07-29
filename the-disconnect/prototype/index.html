@@ -1,0 +1,1020 @@
+<title>The Disconnect</title>
+<style>
+  :root {
+    --bg: #E3E6DE;
+    --bg-phone: #F1EEE3;
+    --surface: #FAF8F0;
+    --surface-2: #EAE5D5;
+    --ink: #1B2320;
+    --ink-2: #4C544A;
+    --ink-3: #838A7C;
+    --border: rgba(27,35,32,0.12);
+    --border-strong: rgba(27,35,32,0.22);
+    --accent: #B8791E;
+    --accent-ink: #6B4A14;
+    --accent-soft: rgba(184,121,30,0.14);
+    --cat-social: #A9455A;
+    --cat-stream: #0F72A0;
+    --cat-video: #767A1E;
+    --shadow: 0 30px 60px -20px rgba(27,35,32,0.35), 0 10px 20px -12px rgba(27,35,32,0.25);
+    --serif: ui-serif, "New York", Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", ui-sans-serif, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", "Menlo", "Cascadia Mono", monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0D110C;
+      --bg-phone: #12160F;
+      --surface: #181D14;
+      --surface-2: #1F2419;
+      --ink: #EDE8D8;
+      --ink-2: #C3C7B6;
+      --ink-3: #838A78;
+      --border: rgba(237,232,216,0.12);
+      --border-strong: rgba(237,232,216,0.22);
+      --accent: #BD8A2C;
+      --accent-ink: #E7C87C;
+      --accent-soft: rgba(189,138,44,0.18);
+      --cat-social: #D1607C;
+      --cat-stream: #2C9BCB;
+      --cat-video: #96992F;
+      --shadow: 0 30px 60px -20px rgba(0,0,0,0.6), 0 10px 20px -12px rgba(0,0,0,0.5);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0D110C;
+    --bg-phone: #12160F;
+    --surface: #181D14;
+    --surface-2: #1F2419;
+    --ink: #EDE8D8;
+    --ink-2: #C3C7B6;
+    --ink-3: #838A78;
+    --border: rgba(237,232,216,0.12);
+    --border-strong: rgba(237,232,216,0.22);
+    --accent: #BD8A2C;
+    --accent-ink: #E7C87C;
+    --accent-soft: rgba(189,138,44,0.18);
+    --cat-social: #D1607C;
+    --cat-stream: #2C9BCB;
+    --cat-video: #96992F;
+    --shadow: 0 30px 60px -20px rgba(0,0,0,0.6), 0 10px 20px -12px rgba(0,0,0,0.5);
+    color-scheme: dark;
+  }
+  :root[data-theme="light"] {
+    --bg: #E3E6DE;
+    --bg-phone: #F1EEE3;
+    --surface: #FAF8F0;
+    --surface-2: #EAE5D5;
+    --ink: #1B2320;
+    --ink-2: #4C544A;
+    --ink-3: #838A7C;
+    --border: rgba(27,35,32,0.12);
+    --border-strong: rgba(27,35,32,0.22);
+    --accent: #B8791E;
+    --accent-ink: #6B4A14;
+    --accent-soft: rgba(184,121,30,0.14);
+    --cat-social: #A9455A;
+    --cat-stream: #0F72A0;
+    --cat-video: #767A1E;
+    --shadow: 0 30px 60px -20px rgba(27,35,32,0.35), 0 10px 20px -12px rgba(27,35,32,0.25);
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 56px 20px 80px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  .page {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 56px;
+  }
+
+  /* ---------- Studio chrome ---------- */
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    max-width: 560px;
+  }
+  .masthead .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    background: var(--accent-soft);
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+  }
+  .masthead h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(34px, 5vw, 50px);
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .masthead h1 em {
+    font-style: italic;
+    color: var(--accent-ink);
+  }
+  .masthead p {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 16px;
+    line-height: 1.6;
+    text-wrap: balance;
+  }
+  .theme-toggle {
+    margin-top: 4px;
+    display: inline-flex;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 100px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+  }
+  .theme-toggle button {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: none;
+    background: transparent;
+    color: var(--ink-2);
+    cursor: pointer;
+  }
+  .theme-toggle button[aria-pressed="true"] {
+    background: var(--surface);
+    color: var(--ink);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  }
+
+  .stage {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .callouts {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 260px;
+    padding-top: 64px;
+  }
+  .callout {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .callout .num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent-ink);
+    letter-spacing: 0.06em;
+  }
+  .callout h3 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 600;
+  }
+  .callout p {
+    margin: 0;
+    font-size: 13.5px;
+    color: var(--ink-2);
+    line-height: 1.55;
+  }
+  .callouts.right { padding-top: 220px; }
+
+  /* ---------- Phone ---------- */
+  .phone {
+    width: 375px;
+    height: 812px;
+    border-radius: 56px;
+    background: linear-gradient(155deg, #2b2f28, #0c0e0a);
+    padding: 14px;
+    box-shadow: var(--shadow);
+    flex-shrink: 0;
+  }
+  :root[data-theme="light"] .phone,
+  @media (prefers-color-scheme: light) { }
+  .phone-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-phone);
+    border-radius: 44px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .island {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 28px;
+    background: #000;
+    border-radius: 20px;
+    z-index: 20;
+  }
+  .statusbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 26px 4px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .statusbar .icons { display: flex; gap: 5px; align-items: center; }
+
+  .screens {
+    flex: 1;
+    position: relative;
+    min-height: 0;
+  }
+  .screen {
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    padding: 6px 20px 28px;
+    display: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .screen::-webkit-scrollbar { display: none; }
+  .screen.active { display: block; }
+
+  .nav-header {
+    padding: 10px 0 18px;
+  }
+  .nav-header .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .nav-header h2 {
+    margin: 2px 0 0;
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .tabbar {
+    display: flex;
+    border-top: 1px solid var(--border);
+    background: color-mix(in srgb, var(--bg-phone) 88%, var(--ink) 4%);
+    padding: 8px 6px 22px;
+    flex-shrink: 0;
+  }
+  .tabbar button {
+    flex: 1;
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 2px;
+    color: var(--ink-3);
+    font-family: var(--sans);
+    font-size: 10.5px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .tabbar button svg { width: 22px; height: 22px; }
+  .tabbar button.active { color: var(--accent-ink); }
+  .tabbar button.active svg { stroke: var(--accent-ink); }
+
+  /* ---------- Cards / shared ---------- */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 18px;
+  }
+  .stack { display: flex; flex-direction: column; gap: 14px; }
+  .row { display: flex; align-items: center; justify-content: space-between; }
+
+  .hero-block { display: flex; flex-direction: column; gap: 2px; margin-bottom: 16px; }
+  .hero-block .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .hero-block .value {
+    font-family: var(--serif);
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.08;
+  }
+  .hero-block .value.accent { color: var(--accent-ink); }
+  .delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 2px 0;
+  }
+  .delta.good { color: #4C7A3E; }
+  :root[data-theme="dark"] .delta.good { color: #8FBF6F; }
+  @media (prefers-color-scheme: dark) { .delta.good { color: #8FBF6F; } }
+
+  .section-title {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 22px 0 10px;
+  }
+
+  /* Donut */
+  .donut-wrap { display: flex; align-items: center; gap: 18px; }
+  .donut-center-label {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 600;
+    fill: var(--ink);
+  }
+  .donut-center-sub {
+    font-family: var(--sans);
+    font-size: 9.5px;
+    fill: var(--ink-3);
+  }
+  .legend { display: flex; flex-direction: column; gap: 9px; flex: 1; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+  .legend-item .dot { width: 9px; height: 9px; border-radius: 3px; flex-shrink: 0; }
+  .legend-item .name { color: var(--ink-2); flex: 1; }
+  .legend-item .val { font-family: var(--mono); font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ink); }
+
+  .pill-stat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-top: 4px;
+  }
+  .pill-stat .icon { font-size: 18px; }
+  .pill-stat p { margin: 0; font-size: 13px; color: var(--ink); line-height: 1.4; }
+  .pill-stat b { color: var(--accent-ink); }
+
+  .btn-primary {
+    width: 100%;
+    background: var(--ink);
+    color: var(--bg-phone);
+    border: none;
+    border-radius: 14px;
+    padding: 14px;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 14.5px;
+    cursor: pointer;
+    margin-top: 18px;
+  }
+  :root[data-theme="dark"] .btn-primary { background: var(--accent); color: #12160F; }
+  @media (prefers-color-scheme: dark) { .btn-primary { background: var(--accent); color: #12160F; } }
+
+  /* Recap card */
+  .brag-card {
+    border-radius: 22px;
+    padding: 22px;
+    background:
+      radial-gradient(120% 100% at 100% 0%, var(--accent-soft), transparent 60%),
+      var(--surface);
+    border: 1px solid var(--border-strong);
+    position: relative;
+    overflow: hidden;
+  }
+  .brag-card .wordmark {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .brag-card .weekof {
+    font-size: 12px;
+    color: var(--ink-3);
+    margin-top: 2px;
+  }
+  .brag-card .bignum {
+    font-family: var(--serif);
+    font-size: 46px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--accent-ink);
+    margin: 14px 0 0;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .brag-card .bignum-label {
+    font-size: 13px;
+    color: var(--ink-2);
+    margin-top: 6px;
+  }
+  .brag-card .rank {
+    display: inline-block;
+    margin-top: 14px;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 12.5px;
+    background: var(--ink);
+    color: var(--bg-phone);
+    padding: 6px 12px;
+    border-radius: 100px;
+  }
+  :root[data-theme="dark"] .brag-card .rank { background: var(--accent); color: #12160F; }
+  @media (prefers-color-scheme: dark) { .brag-card .rank { background: var(--accent); color: #12160F; } }
+
+  .minibars { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+  .minibar-row { display: flex; align-items: center; gap: 8px; font-size: 11.5px; }
+  .minibar-row .mb-label { width: 62px; flex-shrink: 0; color: var(--ink-2); }
+  .minibar-row .mb-track { flex: 1; height: 6px; border-radius: 4px; background: var(--surface-2); overflow: hidden; }
+  .minibar-row .mb-fill { height: 100%; border-radius: 4px; }
+  .minibar-row .mb-val { font-family: var(--mono); width: 44px; text-align: right; color: var(--ink-3); flex-shrink: 0; }
+
+  .share-row { display: flex; gap: 10px; margin-top: 18px; }
+  .share-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 11px 4px;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--ink-2);
+    cursor: pointer;
+  }
+  .share-btn span.ic { font-size: 17px; }
+
+  .toast {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 96px;
+    background: var(--ink);
+    color: var(--bg-phone);
+    padding: 11px 14px;
+    border-radius: 12px;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+    z-index: 30;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+
+  /* Trends bar chart */
+  .barchart {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 130px;
+    padding: 6px 2px 0;
+  }
+  .barchart .bar-col {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    cursor: pointer;
+  }
+  .barchart .bar {
+    width: 100%;
+    border-radius: 5px 5px 3px 3px;
+    background: var(--surface-2);
+    position: relative;
+    min-height: 4px;
+  }
+  .barchart .bar-col.current .bar { background: var(--accent); }
+  .barchart .bar-col .wk {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--ink-3);
+  }
+  .barchart .bar-col.current .wk { color: var(--accent-ink); font-weight: 700; }
+  .bar-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 6px;
+    background: var(--ink);
+    color: var(--bg-phone);
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 6px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+  }
+  .bar-col:hover .bar-tooltip, .bar-col:focus-visible .bar-tooltip { opacity: 1; }
+
+  .table-toggle {
+    background: none;
+    border: none;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent-ink);
+    cursor: pointer;
+    padding: 0;
+    margin-top: 8px;
+  }
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: 10px;
+    display: none;
+  }
+  table.data-table.show { display: table; }
+  table.data-table th, table.data-table td {
+    text-align: left;
+    padding: 6px 4px;
+    border-bottom: 1px solid var(--border);
+    font-variant-numeric: tabular-nums;
+  }
+  table.data-table th { color: var(--ink-3); font-weight: 600; font-family: var(--mono); font-size: 10.5px; }
+
+  .insight {
+    font-size: 13.5px;
+    color: var(--ink-2);
+    line-height: 1.55;
+  }
+  .insight b { color: var(--ink); }
+
+  /* Settings */
+  .list-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 2px;
+    border-bottom: 1px solid var(--border);
+  }
+  .list-row:last-child { border-bottom: none; }
+  .list-row .li-main { display: flex; align-items: center; gap: 10px; }
+  .list-row .app-ic {
+    width: 30px; height: 30px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0;
+  }
+  .list-row .li-text { display: flex; flex-direction: column; }
+  .list-row .li-text .name { font-size: 13.5px; font-weight: 600; }
+  .list-row .li-text .sub { font-size: 11px; color: var(--ink-3); }
+
+  .switch {
+    width: 42px; height: 25px;
+    border-radius: 100px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .switch .knob {
+    position: absolute;
+    top: 2px; left: 2px;
+    width: 19px; height: 19px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    transition: left 0.18s ease;
+  }
+  .switch.on { background: var(--accent); border-color: var(--accent); }
+  .switch.on .knob { left: 19px; }
+
+  .status-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #4C7A3E;
+  }
+  @media (prefers-color-scheme: dark) { .status-chip { color: #8FBF6F; } }
+  :root[data-theme="dark"] .status-chip { color: #8FBF6F; }
+  .status-chip .dot2 { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+
+  footer.credit {
+    text-align: center;
+    color: var(--ink-3);
+    font-size: 12.5px;
+    max-width: 480px;
+    line-height: 1.6;
+  }
+</style>
+
+<div class="page">
+
+  <div class="masthead">
+    <span class="eyebrow">Prototype &middot; mock data</span>
+    <h1>The <em>Disconnect</em></h1>
+    <p>A social-status app for going quiet. It tracks how much time you spend on Instagram, TikTok, YouTube and Netflix each week &mdash; then turns your <em>absence</em> from them into something worth posting.</p>
+    <div class="theme-toggle" role="group" aria-label="Theme">
+      <button type="button" data-theme-btn="light" aria-pressed="true">Light</button>
+      <button type="button" data-theme-btn="dark" aria-pressed="false">Dark</button>
+    </div>
+  </div>
+
+  <div class="stage">
+
+    <div class="callouts left">
+      <div class="callout">
+        <span class="num">Home</span>
+        <h3>The weigh-in</h3>
+        <p>Noise-app time vs. phone-free time, front and center &mdash; plus how you rank against everyone else on the app.</p>
+      </div>
+      <div class="callout">
+        <span class="num">Recap</span>
+        <h3>The brag card</h3>
+        <p>A Wrapped-style card built to be screenshotted. Your quietest stat, dressed up for Stories.</p>
+      </div>
+    </div>
+
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="island"></div>
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="icons">
+            <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="1" width="12" height="9" rx="2" stroke="currentColor"/><rect x="1.5" y="2.5" width="8" height="6" rx="1" fill="currentColor"/><path d="M13 4v3" stroke="currentColor" stroke-linecap="round"/></svg>
+            <svg width="18" height="11" viewBox="0 0 18 11" fill="none"><rect x="0.5" y="0.5" width="15" height="10" rx="2.5" stroke="currentColor"/><rect x="2" y="2" width="9" height="7" rx="1" fill="currentColor"/><rect x="16.3" y="3.5" width="1.2" height="4" rx="0.6" fill="currentColor"/></svg>
+          </span>
+        </div>
+
+        <div class="screens">
+
+          <!-- HOME -->
+          <section class="screen active" id="screen-home" aria-label="Home">
+            <div class="nav-header">
+              <div class="eyebrow">Week of Jul 20&ndash;26</div>
+              <h2>This week</h2>
+            </div>
+
+            <div class="card">
+              <div class="hero-block">
+                <span class="label">Time on noise apps</span>
+                <span class="value">9h 42m</span>
+                <span class="delta good">&#8595; 18% vs. last week</span>
+              </div>
+
+              <div class="donut-wrap">
+                <svg width="128" height="128" viewBox="0 0 200 200" role="img" aria-label="Breakdown of noise-app time by category">
+                  <g transform="rotate(-90 100 100)">
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="var(--surface-2)" stroke-width="26" />
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="var(--cat-social)" stroke-width="26" stroke-linecap="round" pathLength="100" stroke-dasharray="52.4 999" stroke-dashoffset="0" />
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="var(--cat-stream)" stroke-width="26" stroke-linecap="round" pathLength="100" stroke-dasharray="22.3 999" stroke-dashoffset="-53.3" />
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="var(--cat-video)" stroke-width="26" stroke-linecap="round" pathLength="100" stroke-dasharray="18.0 999" stroke-dashoffset="-76.5" />
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="var(--ink-3)" stroke-width="26" stroke-linecap="round" pathLength="100" stroke-dasharray="3.7 999" stroke-dashoffset="-95.4" />
+                  </g>
+                  <text x="100" y="96" text-anchor="middle" class="donut-center-label">9h42</text>
+                  <text x="100" y="114" text-anchor="middle" class="donut-center-sub">NOISE / WK</text>
+                </svg>
+                <div class="legend">
+                  <div class="legend-item"><span class="dot" style="background:var(--cat-social)"></span><span class="name">Social</span><span class="val">5h 10m</span></div>
+                  <div class="legend-item"><span class="dot" style="background:var(--cat-stream)"></span><span class="name">Streaming</span><span class="val">2h 15m</span></div>
+                  <div class="legend-item"><span class="dot" style="background:var(--cat-video)"></span><span class="name">YouTube</span><span class="val">1h 50m</span></div>
+                  <div class="legend-item"><span class="dot" style="background:var(--ink-3)"></span><span class="name">Other</span><span class="val">27m</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-title">Disconnected</div>
+            <div class="card">
+              <div class="hero-block" style="margin-bottom:0;">
+                <span class="label">Phone-free, waking hours</span>
+                <span class="value accent">89h 30m</span>
+              </div>
+              <div class="pill-stat">
+                <span class="icon">&#127775;</span>
+                <p><b>80% of your waking hours</b> this week were spent away from your phone entirely.</p>
+              </div>
+              <div class="pill-stat">
+                <span class="icon">&#128266;</span>
+                <p>Quieter than <b>82% of Disconnect users</b> this week.</p>
+              </div>
+            </div>
+
+            <button class="btn-primary" data-goto="recap">Build my share card &rarr;</button>
+          </section>
+
+          <!-- RECAP / SHARE -->
+          <section class="screen" id="screen-recap" aria-label="Recap and share">
+            <div class="nav-header">
+              <div class="eyebrow">Shareable</div>
+              <h2>Your recap</h2>
+            </div>
+
+            <div class="brag-card">
+              <div class="wordmark">The Disconnect</div>
+              <div class="weekof">Week of Jul 20&ndash;26, 2026</div>
+              <div class="bignum">89h 30m</div>
+              <div class="bignum-label">spent disconnected &mdash; 80% of waking hours</div>
+              <span class="rank">Top 12% most disconnected</span>
+
+              <div class="minibars">
+                <div class="minibar-row"><span class="mb-label">Social</span><span class="mb-track"><span class="mb-fill" style="width:53%;background:var(--cat-social)"></span></span><span class="mb-val">5h 10m</span></div>
+                <div class="minibar-row"><span class="mb-label">Streaming</span><span class="mb-track"><span class="mb-fill" style="width:23%;background:var(--cat-stream)"></span></span><span class="mb-val">2h 15m</span></div>
+                <div class="minibar-row"><span class="mb-label">YouTube</span><span class="mb-track"><span class="mb-fill" style="width:19%;background:var(--cat-video)"></span></span><span class="mb-val">1h 50m</span></div>
+              </div>
+            </div>
+
+            <div class="section-title">Share to</div>
+            <div class="share-row">
+              <button class="share-btn" data-toast="Prototype &mdash; would open Instagram Stories"><span class="ic">&#128248;</span>Stories</button>
+              <button class="share-btn" data-toast="Prototype &mdash; would open X composer"><span class="ic">&#10024;</span>X</button>
+              <button class="share-btn" data-toast="Prototype &mdash; image saved to Photos"><span class="ic">&#11015;&#65039;</span>Save</button>
+              <button class="share-btn" data-toast="Prototype &mdash; link copied"><span class="ic">&#128279;</span>Copy</button>
+            </div>
+
+            <div class="toast" id="toast">Shared</div>
+          </section>
+
+          <!-- TRENDS -->
+          <section class="screen" id="screen-trends" aria-label="Trends">
+            <div class="nav-header">
+              <div class="eyebrow">Last 8 weeks</div>
+              <h2>Trends</h2>
+            </div>
+
+            <div class="card">
+              <div class="row" style="margin-bottom:2px;">
+                <span class="label" style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);">Noise-app hours / week</span>
+              </div>
+              <div class="barchart" id="barchart">
+                <!-- filled by JS -->
+              </div>
+              <button class="table-toggle" id="tableToggle" aria-expanded="false">View as table</button>
+              <table class="data-table" id="dataTable">
+                <thead><tr><th>Week of</th><th>Hours</th></tr></thead>
+                <tbody id="dataTableBody"></tbody>
+              </table>
+            </div>
+
+            <div class="section-title">Streak</div>
+            <div class="card" style="flex-direction:row;display:flex;align-items:center;gap:14px;">
+              <span style="font-size:26px;">&#128293;</span>
+              <p class="insight" style="margin:0;"><b>4-week streak</b> of cutting noise-app time week over week.</p>
+            </div>
+
+            <div class="section-title">Insight</div>
+            <div class="card">
+              <p class="insight">You've cut <b>Social &amp; Streaming</b> time by <b>34%</b> since Jun 8. At this pace you'll be under <b>8h/week</b> by late August.</p>
+            </div>
+          </section>
+
+          <!-- SETTINGS -->
+          <section class="screen" id="screen-settings" aria-label="Settings">
+            <div class="nav-header">
+              <div class="eyebrow">Configure</div>
+              <h2>Settings</h2>
+            </div>
+
+            <div class="card" style="margin-bottom:2px;">
+              <div class="row">
+                <span class="status-chip"><span class="dot2"></span>Screen Time connected</span>
+              </div>
+            </div>
+
+            <div class="section-title">Tracked as "noise"</div>
+            <div class="card">
+              <div class="list-row">
+                <div class="li-main"><span class="app-ic" style="background:#D6336C;">IG</span><div class="li-text"><span class="name">Instagram</span><span class="sub">Social</span></div></div>
+                <div class="switch on" role="switch" aria-checked="true" tabindex="0"><span class="knob"></span></div>
+              </div>
+              <div class="list-row">
+                <div class="li-main"><span class="app-ic" style="background:#111;">TT</span><div class="li-text"><span class="name">TikTok</span><span class="sub">Social</span></div></div>
+                <div class="switch on" role="switch" aria-checked="true" tabindex="0"><span class="knob"></span></div>
+              </div>
+              <div class="list-row">
+                <div class="li-main"><span class="app-ic" style="background:#1DA1F2;">X</span><div class="li-text"><span class="name">X</span><span class="sub">Social</span></div></div>
+                <div class="switch on" role="switch" aria-checked="true" tabindex="0"><span class="knob"></span></div>
+              </div>
+              <div class="list-row">
+                <div class="li-main"><span class="app-ic" style="background:#1877F2;">f</span><div class="li-text"><span class="name">Facebook</span><span class="sub">Social</span></div></div>
+                <div class="switch" role="switch" aria-checked="false" tabindex="0"><span class="knob"></span></div>
+              </div>
+              <div class="list-row">
+                <div class="li-main"><span class="app-ic" style="background:#E50914;">N</span><div class="li-text"><span class="name">Netflix</span><span class="sub">Streaming</span></div></div>
+                <div class="switch on" role="switch" aria-checked="true" tabindex="0"><span class="knob"></span></div>
+              </div>
+              <div class="list-row">
+                <div class="li-main"><span class="app-ic" style="background:#FF0000;">YT</span><div class="li-text"><span class="name">YouTube</span><span class="sub">Video</span></div></div>
+                <div class="switch on" role="switch" aria-checked="true" tabindex="0"><span class="knob"></span></div>
+              </div>
+            </div>
+
+            <div class="section-title">Weekly report</div>
+            <div class="card">
+              <div class="list-row">
+                <div class="li-text"><span class="name">Recap notifications</span><span class="sub">Sundays at 6:00 PM</span></div>
+                <div class="switch on" role="switch" aria-checked="true" tabindex="0"><span class="knob"></span></div>
+              </div>
+              <div class="list-row">
+                <div class="li-text"><span class="name">Include watermark on shares</span><span class="sub">Adds "The Disconnect" mark</span></div>
+                <div class="switch on" role="switch" aria-checked="true" tabindex="0"><span class="knob"></span></div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <div class="tabbar" role="tablist">
+          <button class="active" data-tab="home" role="tab" aria-selected="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+            Home
+          </button>
+          <button data-tab="recap" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+            Recap
+          </button>
+          <button data-tab="trends" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9M11 19V5M18 19v-7"/></svg>
+            Trends
+          </button>
+          <button data-tab="settings" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.6 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+            Settings
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="callouts right">
+      <div class="callout">
+        <span class="num">Trends</span>
+        <h3>The proof</h3>
+        <p>An 8-week line of your noise-app time trending down, plus streaks to keep you going.</p>
+      </div>
+      <div class="callout">
+        <span class="num">Settings</span>
+        <h3>Your definition</h3>
+        <p>You decide what counts as "noise." Screen Time access is requested on-device, per Apple's rules.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="credit">
+    Interactive prototype with mock data &mdash; built to test the concept and screens before native iOS development. Tap around: tabs, the donut legend, the trend bars, and the share row all respond.
+  </footer>
+
+</div>
+
+<script>
+  // Theme toggle
+  var root = document.documentElement;
+  document.querySelectorAll('[data-theme-btn]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var mode = btn.getAttribute('data-theme-btn');
+      root.setAttribute('data-theme', mode);
+      document.querySelectorAll('[data-theme-btn]').forEach(function (b) {
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+    });
+  });
+
+  // Tab navigation
+  var tabs = document.querySelectorAll('.tabbar button');
+  function goto(name) {
+    tabs.forEach(function (t) {
+      var active = t.getAttribute('data-tab') === name;
+      t.classList.toggle('active', active);
+      t.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    document.querySelectorAll('.screen').forEach(function (s) {
+      s.classList.toggle('active', s.id === 'screen-' + name);
+      if (s.id === 'screen-' + name) s.scrollTop = 0;
+    });
+  }
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { goto(t.getAttribute('data-tab')); });
+  });
+  document.querySelectorAll('[data-goto]').forEach(function (b) {
+    b.addEventListener('click', function () { goto(b.getAttribute('data-goto')); });
+  });
+
+  // Toast on share buttons
+  var toast = document.getElementById('toast');
+  var toastTimer;
+  document.querySelectorAll('[data-toast]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      toast.textContent = b.getAttribute('data-toast');
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 1800);
+    });
+  });
+
+  // Settings switches
+  document.querySelectorAll('.switch').forEach(function (sw) {
+    function toggle() {
+      var on = sw.classList.toggle('on');
+      sw.setAttribute('aria-checked', on ? 'true' : 'false');
+    }
+    sw.addEventListener('click', toggle);
+    sw.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  });
+
+  // Trend bar chart
+  var weeks = [
+    { label: 'Jun 1', short: 'Jun', hours: 16.2 },
+    { label: 'Jun 8', short: '8', hours: 15.1 },
+    { label: 'Jun 15', short: '15', hours: 14.0 },
+    { label: 'Jun 22', short: '22', hours: 13.2 },
+    { label: 'Jun 29', short: '29', hours: 12.0 },
+    { label: 'Jul 6', short: 'Jul', hours: 11.1 },
+    { label: 'Jul 13', short: '13', hours: 10.5 },
+    { label: 'Jul 20', short: '20', hours: 9.7, current: true }
+  ];
+  var max = Math.max.apply(null, weeks.map(function (w) { return w.hours; }));
+  var chart = document.getElementById('barchart');
+  var tbody = document.getElementById('dataTableBody');
+  weeks.forEach(function (w) {
+    var col = document.createElement('div');
+    col.className = 'bar-col' + (w.current ? ' current' : '');
+    col.tabIndex = 0;
+    var pct = Math.max(6, (w.hours / max) * 100);
+    col.innerHTML =
+      '<div class="bar" style="height:' + pct + '%">' +
+        '<span class="bar-tooltip">' + w.hours.toFixed(1) + 'h</span>' +
+      '</div>' +
+      '<span class="wk">' + w.short + '</span>';
+    chart.appendChild(col);
+
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td>' + w.label + '</td><td>' + w.hours.toFixed(1) + 'h</td>';
+    tbody.appendChild(tr);
+  });
+
+  var tableToggle = document.getElementById('tableToggle');
+  var dataTable = document.getElementById('dataTable');
+  tableToggle.addEventListener('click', function () {
+    var show = dataTable.classList.toggle('show');
+    chart.style.display = show ? 'none' : 'flex';
+    tableToggle.textContent = show ? 'View as chart' : 'View as table';
+    tableToggle.setAttribute('aria-expanded', show ? 'true' : 'false');
+  });
+</script>
