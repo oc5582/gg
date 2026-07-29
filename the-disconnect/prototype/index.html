@@ -1,666 +1,195 @@
 <title>The Disconnect</title>
 <style>
   :root {
-    --bg: #E3E6DE;
-    --bg-phone: #F1EEE3;
-    --surface: #FAF8F0;
-    --surface-2: #EAE5D5;
-    --ink: #1B2320;
-    --ink-2: #4C544A;
-    --ink-3: #838A7C;
-    --border: rgba(27,35,32,0.12);
-    --border-strong: rgba(27,35,32,0.22);
-    --accent: #B8791E;
-    --accent-ink: #6B4A14;
-    --accent-soft: rgba(184,121,30,0.14);
-    --cat-social: #A9455A;
-    --cat-stream: #0F72A0;
-    --cat-video: #767A1E;
-    --shadow: 0 30px 60px -20px rgba(27,35,32,0.35), 0 10px 20px -12px rgba(27,35,32,0.25);
+    --paper: #E9E4D3;
+    --page: #F2EEE0;
+    --panel: #ECE7D6;
+    --ink: #221D15;
+    --ink-2: #5B5546;
+    --ink-3: #8C8571;
+    --rule: rgba(34,29,21,0.24);
+    --rule-soft: rgba(34,29,21,0.13);
+    --accent: #A23E2E;
+    --accent-soft: rgba(162,62,46,0.09);
+    --shadow: 0 22px 44px -18px rgba(34,29,21,0.32), 0 6px 14px -8px rgba(34,29,21,0.2);
     --serif: ui-serif, "New York", Georgia, "Iowan Old Style", "Palatino Linotype", serif;
-    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", ui-sans-serif, Arial, sans-serif;
-    --mono: ui-monospace, "SF Mono", "Menlo", "Cascadia Mono", monospace;
+    --type: "Courier New", Courier, ui-monospace, monospace;
     color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #0D110C;
-      --bg-phone: #12160F;
-      --surface: #181D14;
-      --surface-2: #1F2419;
-      --ink: #EDE8D8;
-      --ink-2: #C3C7B6;
-      --ink-3: #838A78;
-      --border: rgba(237,232,216,0.12);
-      --border-strong: rgba(237,232,216,0.22);
-      --accent: #BD8A2C;
-      --accent-ink: #E7C87C;
-      --accent-soft: rgba(189,138,44,0.18);
-      --cat-social: #D1607C;
-      --cat-stream: #2C9BCB;
-      --cat-video: #96992F;
-      --shadow: 0 30px 60px -20px rgba(0,0,0,0.6), 0 10px 20px -12px rgba(0,0,0,0.5);
+      --paper: #16130E; --page: #1C1811; --panel: #221D15;
+      --ink: #E9E1CC; --ink-2: #B7AD91; --ink-3: #83795F;
+      --rule: rgba(233,225,204,0.22); --rule-soft: rgba(233,225,204,0.12);
+      --accent: #C4634B; --accent-soft: rgba(196,99,75,0.14);
+      --shadow: 0 22px 44px -18px rgba(0,0,0,0.6), 0 6px 14px -8px rgba(0,0,0,0.45);
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #0D110C;
-    --bg-phone: #12160F;
-    --surface: #181D14;
-    --surface-2: #1F2419;
-    --ink: #EDE8D8;
-    --ink-2: #C3C7B6;
-    --ink-3: #838A78;
-    --border: rgba(237,232,216,0.12);
-    --border-strong: rgba(237,232,216,0.22);
-    --accent: #BD8A2C;
-    --accent-ink: #E7C87C;
-    --accent-soft: rgba(189,138,44,0.18);
-    --cat-social: #D1607C;
-    --cat-stream: #2C9BCB;
-    --cat-video: #96992F;
-    --shadow: 0 30px 60px -20px rgba(0,0,0,0.6), 0 10px 20px -12px rgba(0,0,0,0.5);
+    --paper: #16130E; --page: #1C1811; --panel: #221D15;
+    --ink: #E9E1CC; --ink-2: #B7AD91; --ink-3: #83795F;
+    --rule: rgba(233,225,204,0.22); --rule-soft: rgba(233,225,204,0.12);
+    --accent: #C4634B; --accent-soft: rgba(196,99,75,0.14);
+    --shadow: 0 22px 44px -18px rgba(0,0,0,0.6), 0 6px 14px -8px rgba(0,0,0,0.45);
     color-scheme: dark;
   }
   :root[data-theme="light"] {
-    --bg: #E3E6DE;
-    --bg-phone: #F1EEE3;
-    --surface: #FAF8F0;
-    --surface-2: #EAE5D5;
-    --ink: #1B2320;
-    --ink-2: #4C544A;
-    --ink-3: #838A7C;
-    --border: rgba(27,35,32,0.12);
-    --border-strong: rgba(27,35,32,0.22);
-    --accent: #B8791E;
-    --accent-ink: #6B4A14;
-    --accent-soft: rgba(184,121,30,0.14);
-    --cat-social: #A9455A;
-    --cat-stream: #0F72A0;
-    --cat-video: #767A1E;
-    --shadow: 0 30px 60px -20px rgba(27,35,32,0.35), 0 10px 20px -12px rgba(27,35,32,0.25);
+    --paper: #E9E4D3; --page: #F2EEE0; --panel: #ECE7D6;
+    --ink: #221D15; --ink-2: #5B5546; --ink-3: #8C8571;
+    --rule: rgba(34,29,21,0.24); --rule-soft: rgba(34,29,21,0.13);
+    --accent: #A23E2E; --accent-soft: rgba(162,62,46,0.09);
+    --shadow: 0 22px 44px -18px rgba(34,29,21,0.32), 0 6px 14px -8px rgba(34,29,21,0.2);
     color-scheme: light;
   }
 
   * { box-sizing: border-box; }
-  html, body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--sans);
-    -webkit-font-smoothing: antialiased;
-  }
-  body {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    padding: 56px 20px 80px;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
-  }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--serif); }
+  body { min-height: 100vh; display: flex; justify-content: center; padding: 56px 20px 80px; }
+  @media (prefers-reduced-motion: reduce) { * { animation-duration: .001ms !important; transition-duration: .001ms !important; } }
 
-  .page {
-    width: 100%;
-    max-width: 1100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 56px;
-  }
+  .page { width: 100%; max-width: 1100px; display: flex; flex-direction: column; align-items: center; gap: 48px; }
 
   /* ---------- Studio chrome ---------- */
-  .masthead {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 14px;
-    max-width: 560px;
-  }
+  .masthead { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; max-width: 560px; }
   .masthead .eyebrow {
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent-ink);
-    background: var(--accent-soft);
-    padding: 5px 12px;
-    border-radius: 100px;
-    border: 1px solid var(--border);
+    font-family: var(--type); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3);
+    padding-bottom: 10px; border-bottom: 1px solid var(--rule);
   }
-  .masthead h1 {
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: clamp(34px, 5vw, 50px);
-    letter-spacing: -0.01em;
-    margin: 0;
-    text-wrap: balance;
-  }
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--accent-ink);
-  }
-  .masthead p {
-    margin: 0;
-    color: var(--ink-2);
-    font-size: 16px;
-    line-height: 1.6;
-    text-wrap: balance;
-  }
-  .theme-toggle {
-    margin-top: 4px;
-    display: inline-flex;
-    gap: 2px;
-    padding: 3px;
-    border-radius: 100px;
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-  }
-  .theme-toggle button {
-    font-family: var(--sans);
-    font-size: 12px;
-    font-weight: 600;
-    padding: 6px 14px;
-    border-radius: 100px;
-    border: none;
-    background: transparent;
-    color: var(--ink-2);
-    cursor: pointer;
-  }
-  .theme-toggle button[aria-pressed="true"] {
-    background: var(--surface);
-    color: var(--ink);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
-  }
+  .masthead h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(34px, 5vw, 50px); letter-spacing: -.01em; margin: 4px 0 0; text-wrap: balance; }
+  .masthead h1 em { font-style: italic; color: var(--accent); }
+  .masthead p { margin: 0; color: var(--ink-2); font-size: 16px; line-height: 1.6; text-wrap: balance; }
+  .theme-toggle { margin-top: 6px; font-family: var(--type); font-size: 12px; letter-spacing: .04em; color: var(--ink-3); }
+  .theme-toggle button { font-family: var(--type); font-size: 12px; background: none; border: none; color: var(--ink-3); cursor: pointer; padding: 2px 3px; }
+  .theme-toggle button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 
-  .stage {
-    display: flex;
-    gap: 48px;
-    align-items: flex-start;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+  .stage { display: flex; gap: 48px; align-items: flex-start; justify-content: center; flex-wrap: wrap; }
 
-  .callouts {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    max-width: 260px;
-    padding-top: 64px;
-  }
-  .callout {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .callout .num {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent-ink);
-    letter-spacing: 0.06em;
-  }
-  .callout h3 {
-    margin: 0;
-    font-family: var(--serif);
-    font-size: 19px;
-    font-weight: 600;
-  }
-  .callout p {
-    margin: 0;
-    font-size: 13.5px;
-    color: var(--ink-2);
-    line-height: 1.55;
-  }
-  .callouts.right { padding-top: 220px; }
+  .callouts { display: flex; flex-direction: column; gap: 30px; max-width: 250px; padding-top: 70px; }
+  .callout { display: flex; flex-direction: column; gap: 6px; padding-left: 14px; border-left: 1px solid var(--rule); }
+  .callout .num { font-family: var(--type); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+  .callout h3 { margin: 0; font-family: var(--serif); font-size: 18px; font-weight: 600; font-style: italic; }
+  .callout p { margin: 0; font-size: 13.5px; color: var(--ink-2); line-height: 1.55; }
+  .callouts.right { padding-top: 230px; }
 
   /* ---------- Phone ---------- */
   .phone {
-    width: 375px;
-    height: 812px;
-    border-radius: 56px;
-    background: linear-gradient(155deg, #2b2f28, #0c0e0a);
-    padding: 14px;
-    box-shadow: var(--shadow);
-    flex-shrink: 0;
+    width: 375px; height: 812px; border-radius: 18px;
+    background: var(--ink); padding: 2px; box-shadow: var(--shadow); flex-shrink: 0;
   }
-  :root[data-theme="light"] .phone,
-  @media (prefers-color-scheme: light) { }
   .phone-screen {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: var(--bg-phone);
-    border-radius: 44px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(255,255,255,0.08);
+    position: relative; width: 100%; height: 100%; background: var(--page);
+    border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;
   }
-  .island {
-    position: absolute;
-    top: 14px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 28px;
-    background: #000;
-    border-radius: 20px;
-    z-index: 20;
-  }
-  .statusbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 26px 4px;
-    font-family: var(--sans);
-    font-weight: 600;
-    font-size: 14px;
-    flex-shrink: 0;
-  }
-  .statusbar .icons { display: flex; gap: 5px; align-items: center; }
+  .notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: var(--rule); border-radius: 2px; z-index: 5; }
+  .statusbar { display: flex; justify-content: center; padding: 16px 24px 2px; font-family: var(--type); font-size: 12px; letter-spacing: .06em; color: var(--ink-3); flex-shrink: 0; }
 
-  .screens {
-    flex: 1;
-    position: relative;
-    min-height: 0;
-  }
-  .screen {
-    position: absolute;
-    inset: 0;
-    overflow-y: auto;
-    padding: 6px 20px 28px;
-    display: none;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+  .screens { flex: 1; position: relative; min-height: 0; }
+  .screen { position: absolute; inset: 0; overflow-y: auto; padding: 10px 22px 30px; display: none; scrollbar-width: none; }
   .screen::-webkit-scrollbar { display: none; }
   .screen.active { display: block; }
 
-  .nav-header {
-    padding: 10px 0 18px;
-  }
-  .nav-header .eyebrow {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-  }
-  .nav-header h2 {
-    margin: 2px 0 0;
-    font-family: var(--serif);
-    font-size: 26px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-  }
+  .nav-header { padding: 8px 0 16px; }
+  .nav-header .eyebrow { font-family: var(--type); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+  .nav-header h2 { margin: 3px 0 10px; font-family: var(--serif); font-size: 25px; font-weight: 600; letter-spacing: -.01em; }
+  .rule-double { border: none; border-top: 1px solid var(--ink); margin: 0 0 3px; }
+  .rule-thin { border: none; border-top: 1px solid var(--rule); margin: 0; }
 
   .tabbar {
-    display: flex;
-    border-top: 1px solid var(--border);
-    background: color-mix(in srgb, var(--bg-phone) 88%, var(--ink) 4%);
-    padding: 8px 6px 22px;
-    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    border-top: 1px solid var(--rule); padding: 14px 6px 24px; flex-shrink: 0; font-family: var(--type);
   }
-  .tabbar button {
-    flex: 1;
-    background: none;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    padding: 6px 2px;
-    color: var(--ink-3);
-    font-family: var(--sans);
-    font-size: 10.5px;
-    font-weight: 600;
-    cursor: pointer;
-  }
-  .tabbar button svg { width: 22px; height: 22px; }
-  .tabbar button.active { color: var(--accent-ink); }
-  .tabbar button.active svg { stroke: var(--accent-ink); }
+  .tabbar button { background: none; border: none; font-family: var(--type); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); cursor: pointer; padding: 3px 1px; border-bottom: 1px solid transparent; }
+  .tabbar button.active { color: var(--ink); font-weight: 700; border-bottom-color: var(--ink); }
+  .tabbar .sep { color: var(--rule); font-size: 11px; }
 
-  /* ---------- Cards / shared ---------- */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 18px;
-  }
-  .stack { display: flex; flex-direction: column; gap: 14px; }
-  .row { display: flex; align-items: center; justify-content: space-between; }
+  /* ---------- Shared type ---------- */
+  .section-label { font-family: var(--type); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin: 22px 0 8px; }
+  .hero-block { margin-bottom: 14px; }
+  .hero-block .label { font-family: var(--type); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+  .hero-block .value { font-family: var(--serif); font-size: 38px; font-weight: 600; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1.1; display: block; margin-top: 2px; }
+  .hero-block .value.accent { color: var(--accent); }
+  .delta { font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--ink-2); display: block; margin-top: 3px; }
 
-  .hero-block { display: flex; flex-direction: column; gap: 2px; margin-bottom: 16px; }
-  .hero-block .label {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-  }
-  .hero-block .value {
-    font-family: var(--serif);
-    font-size: 40px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    font-variant-numeric: tabular-nums;
-    line-height: 1.08;
-  }
-  .hero-block .value.accent { color: var(--accent-ink); }
-  .delta {
-    display: inline-flex;
-    align-items: center;
-    gap: 3px;
-    font-family: var(--mono);
-    font-size: 12.5px;
-    font-weight: 600;
-    padding: 2px 0;
-  }
-  .delta.good { color: #4C7A3E; }
-  :root[data-theme="dark"] .delta.good { color: #8FBF6F; }
-  @media (prefers-color-scheme: dark) { .delta.good { color: #8FBF6F; } }
+  /* Ledger list (replaces donut chart) */
+  .ledger { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+  .ledger-row { display: flex; align-items: baseline; gap: 6px; }
+  .ledger-row .lr-label { font-family: var(--serif); font-size: 14px; white-space: nowrap; }
+  .ledger-row .lr-leader { flex: 1; border-bottom: 1px dotted var(--rule); margin-bottom: 4px; }
+  .ledger-row .lr-value { font-family: var(--type); font-size: 12.5px; font-variant-numeric: tabular-nums; color: var(--ink-2); white-space: nowrap; }
+  .lr-bar-track { height: 2px; background: var(--rule-soft); margin: 3px 0 0; }
+  .lr-bar-fill { height: 100%; background: var(--ink-3); }
 
-  .section-title {
-    font-family: var(--mono);
-    font-size: 11.5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    margin: 22px 0 10px;
+  blockquote.note {
+    margin: 14px 0 0; padding-left: 14px; border-left: 2px solid var(--rule);
+    font-family: var(--serif); font-style: italic; font-size: 14px; line-height: 1.5; color: var(--ink-2);
+  }
+  blockquote.note b { color: var(--ink); font-style: normal; }
+
+  .link-cta {
+    display: inline-block; margin-top: 22px; font-family: var(--type); font-size: 12.5px;
+    letter-spacing: .04em; color: var(--ink); text-decoration: underline; text-underline-offset: 4px;
+    background: none; border: none; cursor: pointer; padding: 0;
   }
 
-  /* Donut */
-  .donut-wrap { display: flex; align-items: center; gap: 18px; }
-  .donut-center-label {
-    font-family: var(--serif);
-    font-size: 21px;
-    font-weight: 600;
-    fill: var(--ink);
+  /* Recap / stamp card */
+  .stamp-card {
+    position: relative; margin-top: 4px; padding: 26px 20px 22px;
+    border: 1px solid var(--ink); outline: 1px solid var(--rule); outline-offset: 4px;
   }
-  .donut-center-sub {
-    font-family: var(--sans);
-    font-size: 9.5px;
-    fill: var(--ink-3);
+  .stamp-card .wordmark { text-align: center; font-family: var(--type); font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3); }
+  .stamp-card .weekof { text-align: center; font-family: var(--type); font-size: 11px; color: var(--ink-3); margin-top: 3px; }
+  .stamp-card .bignum { text-align: center; font-family: var(--serif); font-size: 42px; font-weight: 600; letter-spacing: -.02em; margin: 16px 0 0; font-variant-numeric: tabular-nums; }
+  .stamp-card .bignum-label { text-align: center; font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--ink-2); margin-top: 4px; }
+  .stamp {
+    position: absolute; top: 20px; right: 18px; width: 68px; height: 68px; border-radius: 50%;
+    border: 2px dashed var(--accent); transform: rotate(-10deg);
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    font-family: var(--type); font-size: 8.5px; font-weight: 700; letter-spacing: .03em; color: var(--accent); line-height: 1.35;
   }
-  .legend { display: flex; flex-direction: column; gap: 9px; flex: 1; }
-  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; }
-  .legend-item .dot { width: 9px; height: 9px; border-radius: 3px; flex-shrink: 0; }
-  .legend-item .name { color: var(--ink-2); flex: 1; }
-  .legend-item .val { font-family: var(--mono); font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ink); }
+  .stamp-card .ledger { margin-top: 22px; padding-top: 16px; border-top: 1px dashed var(--rule); }
 
-  .pill-stat {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--accent-soft);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 12px 14px;
-    margin-top: 4px;
-  }
-  .pill-stat .icon { font-size: 18px; }
-  .pill-stat p { margin: 0; font-size: 13px; color: var(--ink); line-height: 1.4; }
-  .pill-stat b { color: var(--accent-ink); }
-
-  .btn-primary {
-    width: 100%;
-    background: var(--ink);
-    color: var(--bg-phone);
-    border: none;
-    border-radius: 14px;
-    padding: 14px;
-    font-family: var(--sans);
-    font-weight: 700;
-    font-size: 14.5px;
-    cursor: pointer;
-    margin-top: 18px;
-  }
-  :root[data-theme="dark"] .btn-primary { background: var(--accent); color: #12160F; }
-  @media (prefers-color-scheme: dark) { .btn-primary { background: var(--accent); color: #12160F; } }
-
-  /* Recap card */
-  .brag-card {
-    border-radius: 22px;
-    padding: 22px;
-    background:
-      radial-gradient(120% 100% at 100% 0%, var(--accent-soft), transparent 60%),
-      var(--surface);
-    border: 1px solid var(--border-strong);
-    position: relative;
-    overflow: hidden;
-  }
-  .brag-card .wordmark {
-    font-family: var(--mono);
-    font-size: 10.5px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-  }
-  .brag-card .weekof {
-    font-size: 12px;
-    color: var(--ink-3);
-    margin-top: 2px;
-  }
-  .brag-card .bignum {
-    font-family: var(--serif);
-    font-size: 46px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    color: var(--accent-ink);
-    margin: 14px 0 0;
-    line-height: 1;
-    font-variant-numeric: tabular-nums;
-  }
-  .brag-card .bignum-label {
-    font-size: 13px;
-    color: var(--ink-2);
-    margin-top: 6px;
-  }
-  .brag-card .rank {
-    display: inline-block;
-    margin-top: 14px;
-    font-family: var(--sans);
-    font-weight: 700;
-    font-size: 12.5px;
-    background: var(--ink);
-    color: var(--bg-phone);
-    padding: 6px 12px;
-    border-radius: 100px;
-  }
-  :root[data-theme="dark"] .brag-card .rank { background: var(--accent); color: #12160F; }
-  @media (prefers-color-scheme: dark) { .brag-card .rank { background: var(--accent); color: #12160F; } }
-
-  .minibars { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
-  .minibar-row { display: flex; align-items: center; gap: 8px; font-size: 11.5px; }
-  .minibar-row .mb-label { width: 62px; flex-shrink: 0; color: var(--ink-2); }
-  .minibar-row .mb-track { flex: 1; height: 6px; border-radius: 4px; background: var(--surface-2); overflow: hidden; }
-  .minibar-row .mb-fill { height: 100%; border-radius: 4px; }
-  .minibar-row .mb-val { font-family: var(--mono); width: 44px; text-align: right; color: var(--ink-3); flex-shrink: 0; }
-
-  .share-row { display: flex; gap: 10px; margin-top: 18px; }
-  .share-btn {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 11px 4px;
-    font-size: 10.5px;
-    font-weight: 600;
-    color: var(--ink-2);
-    cursor: pointer;
-  }
-  .share-btn span.ic { font-size: 17px; }
-
-  .toast {
-    position: absolute;
-    left: 20px;
-    right: 20px;
-    bottom: 96px;
-    background: var(--ink);
-    color: var(--bg-phone);
-    padding: 11px 14px;
-    border-radius: 12px;
-    font-size: 12.5px;
-    font-weight: 600;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    pointer-events: none;
-    z-index: 30;
-  }
-  .toast.show { opacity: 1; transform: translateY(0); }
+  .share-line { font-size: 13.5px; color: var(--ink-2); margin-top: 4px; line-height: 1.8; }
+  .share-line button { font-family: var(--serif); font-size: 13.5px; background: none; border: none; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 0; }
+  .share-line .dot-sep { color: var(--rule); padding: 0 6px; }
+  .confirm-line { font-family: var(--type); font-size: 11.5px; color: var(--accent); margin-top: 10px; height: 14px; opacity: 0; transition: opacity .2s ease; }
+  .confirm-line.show { opacity: 1; }
 
   /* Trends bar chart */
-  .barchart {
-    display: flex;
-    align-items: flex-end;
-    gap: 8px;
-    height: 130px;
-    padding: 6px 2px 0;
-  }
-  .barchart .bar-col {
-    flex: 1;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 6px;
-    cursor: pointer;
-  }
-  .barchart .bar {
-    width: 100%;
-    border-radius: 5px 5px 3px 3px;
-    background: var(--surface-2);
-    position: relative;
-    min-height: 4px;
-  }
+  .barchart { display: flex; align-items: flex-end; gap: 7px; height: 118px; padding: 4px 2px 0; border-bottom: 1px solid var(--ink); }
+  .barchart .bar-col { flex: 1; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px; cursor: pointer; }
+  .barchart .bar { width: 100%; background: var(--rule); position: relative; min-height: 3px; }
   .barchart .bar-col.current .bar { background: var(--accent); }
-  .barchart .bar-col .wk {
-    font-family: var(--mono);
-    font-size: 9px;
-    color: var(--ink-3);
-  }
-  .barchart .bar-col.current .wk { color: var(--accent-ink); font-weight: 700; }
+  .barchart .bar-col .wk { font-family: var(--type); font-size: 9px; color: var(--ink-3); }
+  .barchart .bar-col.current .wk { color: var(--accent); font-weight: 700; }
   .bar-tooltip {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 6px;
-    background: var(--ink);
-    color: var(--bg-phone);
-    font-family: var(--mono);
-    font-size: 10px;
-    font-weight: 700;
-    padding: 3px 6px;
-    border-radius: 6px;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.15s ease;
+    position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 6px;
+    background: var(--ink); color: var(--page); font-family: var(--type); font-size: 10px; font-weight: 700;
+    padding: 2px 5px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .15s ease;
   }
   .bar-col:hover .bar-tooltip, .bar-col:focus-visible .bar-tooltip { opacity: 1; }
 
-  .table-toggle {
-    background: none;
-    border: none;
-    font-family: var(--sans);
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--accent-ink);
-    cursor: pointer;
-    padding: 0;
-    margin-top: 8px;
-  }
-  table.data-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
-    margin-top: 10px;
-    display: none;
-  }
+  .table-toggle { background: none; border: none; font-family: var(--type); font-size: 11.5px; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 0; margin-top: 10px; }
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 10px; display: none; }
   table.data-table.show { display: table; }
-  table.data-table th, table.data-table td {
-    text-align: left;
-    padding: 6px 4px;
-    border-bottom: 1px solid var(--border);
-    font-variant-numeric: tabular-nums;
-  }
-  table.data-table th { color: var(--ink-3); font-weight: 600; font-family: var(--mono); font-size: 10.5px; }
-
-  .insight {
-    font-size: 13.5px;
-    color: var(--ink-2);
-    line-height: 1.55;
-  }
-  .insight b { color: var(--ink); }
+  table.data-table th, table.data-table td { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--rule-soft); font-variant-numeric: tabular-nums; font-family: var(--serif); }
+  table.data-table th { color: var(--ink-3); font-weight: 600; font-family: var(--type); font-size: 10px; text-transform: uppercase; letter-spacing: .06em; }
 
   /* Settings */
-  .list-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 2px;
-    border-bottom: 1px solid var(--border);
-  }
+  .status-line { font-family: var(--type); font-size: 11.5px; color: var(--ink-2); padding: 10px 0; border-bottom: 1px solid var(--rule); display: flex; align-items: center; gap: 7px; }
+  .status-line .dot2 { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+
+  .list-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid var(--rule-soft); }
   .list-row:last-child { border-bottom: none; }
-  .list-row .li-main { display: flex; align-items: center; gap: 10px; }
-  .list-row .app-ic {
-    width: 30px; height: 30px; border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0;
-  }
   .list-row .li-text { display: flex; flex-direction: column; }
-  .list-row .li-text .name { font-size: 13.5px; font-weight: 600; }
-  .list-row .li-text .sub { font-size: 11px; color: var(--ink-3); }
+  .list-row .li-text .name { font-family: var(--serif); font-size: 14.5px; }
+  .list-row .li-text .sub { font-family: var(--type); font-size: 10px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); margin-top: 1px; }
 
-  .switch {
-    width: 42px; height: 25px;
-    border-radius: 100px;
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    position: relative;
-    cursor: pointer;
-    flex-shrink: 0;
-  }
-  .switch .knob {
-    position: absolute;
-    top: 2px; left: 2px;
-    width: 19px; height: 19px;
-    border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-    transition: left 0.18s ease;
-  }
-  .switch.on { background: var(--accent); border-color: var(--accent); }
-  .switch.on .knob { left: 19px; }
+  .check { width: 17px; height: 17px; border: 1.5px solid var(--ink-3); flex-shrink: 0; cursor: pointer; position: relative; }
+  .check.on { border-color: var(--ink); }
+  .check.on::after { content: ""; position: absolute; left: 3px; top: -1px; width: 5px; height: 10px; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(40deg); }
 
-  .status-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #4C7A3E;
-  }
-  @media (prefers-color-scheme: dark) { .status-chip { color: #8FBF6F; } }
-  :root[data-theme="dark"] .status-chip { color: #8FBF6F; }
-  .status-chip .dot2 { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
-
-  footer.credit {
-    text-align: center;
-    color: var(--ink-3);
-    font-size: 12.5px;
-    max-width: 480px;
-    line-height: 1.6;
-  }
+  footer.credit { text-align: center; color: var(--ink-3); font-size: 12.5px; max-width: 480px; line-height: 1.6; font-family: var(--serif); }
 </style>
 
 <div class="page">
@@ -668,10 +197,9 @@
   <div class="masthead">
     <span class="eyebrow">Prototype &middot; mock data</span>
     <h1>The <em>Disconnect</em></h1>
-    <p>A social-status app for going quiet. It tracks how much time you spend on Instagram, TikTok, YouTube and Netflix each week &mdash; then turns your <em>absence</em> from them into something worth posting.</p>
+    <p>A social-status app for going quiet. It tallies how much time you spend on Instagram, TikTok, YouTube and Netflix each week &mdash; then turns your <em>absence</em> from them into something worth posting.</p>
     <div class="theme-toggle" role="group" aria-label="Theme">
-      <button type="button" data-theme-btn="light" aria-pressed="true">Light</button>
-      <button type="button" data-theme-btn="dark" aria-pressed="false">Dark</button>
+      <button type="button" data-theme-btn="light" aria-pressed="true">Light</button> / <button type="button" data-theme-btn="dark" aria-pressed="false">Dark</button>
     </div>
   </div>
 
@@ -680,26 +208,20 @@
     <div class="callouts left">
       <div class="callout">
         <span class="num">Home</span>
-        <h3>The weigh-in</h3>
-        <p>Noise-app time vs. phone-free time, front and center &mdash; plus how you rank against everyone else on the app.</p>
+        <h3>The ledger</h3>
+        <p>Noise-app time and phone-free time, tallied like a day's totals &mdash; no colour-coded dashboard, just the numbers.</p>
       </div>
       <div class="callout">
         <span class="num">Recap</span>
-        <h3>The brag card</h3>
-        <p>A Wrapped-style card built to be screenshotted. Your quietest stat, dressed up for Stories.</p>
+        <h3>The stamp</h3>
+        <p>A printed-style card built to be screenshotted &mdash; a rank, a total, and nothing that looks like the apps it's tracking.</p>
       </div>
     </div>
 
     <div class="phone">
       <div class="phone-screen">
-        <div class="island"></div>
-        <div class="statusbar">
-          <span>9:41</span>
-          <span class="icons">
-            <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="1" width="12" height="9" rx="2" stroke="currentColor"/><rect x="1.5" y="2.5" width="8" height="6" rx="1" fill="currentColor"/><path d="M13 4v3" stroke="currentColor" stroke-linecap="round"/></svg>
-            <svg width="18" height="11" viewBox="0 0 18 11" fill="none"><rect x="0.5" y="0.5" width="15" height="10" rx="2.5" stroke="currentColor"/><rect x="2" y="2" width="9" height="7" rx="1" fill="currentColor"/><rect x="16.3" y="3.5" width="1.2" height="4" rx="0.6" fill="currentColor"/></svg>
-          </span>
-        </div>
+        <div class="notch"></div>
+        <div class="statusbar">9:41</div>
 
         <div class="screens">
 
@@ -708,53 +230,44 @@
             <div class="nav-header">
               <div class="eyebrow">Week of Jul 20&ndash;26</div>
               <h2>This week</h2>
+              <hr class="rule-double" /><hr class="rule-thin" />
             </div>
 
-            <div class="card">
-              <div class="hero-block">
-                <span class="label">Time on noise apps</span>
-                <span class="value">9h 42m</span>
-                <span class="delta good">&#8595; 18% vs. last week</span>
-              </div>
-
-              <div class="donut-wrap">
-                <svg width="128" height="128" viewBox="0 0 200 200" role="img" aria-label="Breakdown of noise-app time by category">
-                  <g transform="rotate(-90 100 100)">
-                    <circle cx="100" cy="100" r="80" fill="none" stroke="var(--surface-2)" stroke-width="26" />
-                    <circle cx="100" cy="100" r="80" fill="none" stroke="var(--cat-social)" stroke-width="26" stroke-linecap="round" pathLength="100" stroke-dasharray="52.4 999" stroke-dashoffset="0" />
-                    <circle cx="100" cy="100" r="80" fill="none" stroke="var(--cat-stream)" stroke-width="26" stroke-linecap="round" pathLength="100" stroke-dasharray="22.3 999" stroke-dashoffset="-53.3" />
-                    <circle cx="100" cy="100" r="80" fill="none" stroke="var(--cat-video)" stroke-width="26" stroke-linecap="round" pathLength="100" stroke-dasharray="18.0 999" stroke-dashoffset="-76.5" />
-                    <circle cx="100" cy="100" r="80" fill="none" stroke="var(--ink-3)" stroke-width="26" stroke-linecap="round" pathLength="100" stroke-dasharray="3.7 999" stroke-dashoffset="-95.4" />
-                  </g>
-                  <text x="100" y="96" text-anchor="middle" class="donut-center-label">9h42</text>
-                  <text x="100" y="114" text-anchor="middle" class="donut-center-sub">NOISE / WK</text>
-                </svg>
-                <div class="legend">
-                  <div class="legend-item"><span class="dot" style="background:var(--cat-social)"></span><span class="name">Social</span><span class="val">5h 10m</span></div>
-                  <div class="legend-item"><span class="dot" style="background:var(--cat-stream)"></span><span class="name">Streaming</span><span class="val">2h 15m</span></div>
-                  <div class="legend-item"><span class="dot" style="background:var(--cat-video)"></span><span class="name">YouTube</span><span class="val">1h 50m</span></div>
-                  <div class="legend-item"><span class="dot" style="background:var(--ink-3)"></span><span class="name">Other</span><span class="val">27m</span></div>
-                </div>
-              </div>
+            <div class="hero-block">
+              <span class="label">Time on noise apps</span>
+              <span class="value">9h 42m</span>
+              <span class="delta">&#8595; down 18% from last week</span>
             </div>
 
-            <div class="section-title">Disconnected</div>
-            <div class="card">
-              <div class="hero-block" style="margin-bottom:0;">
-                <span class="label">Phone-free, waking hours</span>
-                <span class="value accent">89h 30m</span>
+            <div class="ledger">
+              <div>
+                <div class="ledger-row"><span class="lr-label">Social</span><span class="lr-leader"></span><span class="lr-value">5h 10m</span></div>
+                <div class="lr-bar-track"><div class="lr-bar-fill" style="width:100%"></div></div>
               </div>
-              <div class="pill-stat">
-                <span class="icon">&#127775;</span>
-                <p><b>80% of your waking hours</b> this week were spent away from your phone entirely.</p>
+              <div>
+                <div class="ledger-row"><span class="lr-label">Streaming</span><span class="lr-leader"></span><span class="lr-value">2h 15m</span></div>
+                <div class="lr-bar-track"><div class="lr-bar-fill" style="width:43.5%"></div></div>
               </div>
-              <div class="pill-stat">
-                <span class="icon">&#128266;</span>
-                <p>Quieter than <b>82% of Disconnect users</b> this week.</p>
+              <div>
+                <div class="ledger-row"><span class="lr-label">YouTube</span><span class="lr-leader"></span><span class="lr-value">1h 50m</span></div>
+                <div class="lr-bar-track"><div class="lr-bar-fill" style="width:35.5%"></div></div>
+              </div>
+              <div>
+                <div class="ledger-row"><span class="lr-label">Other</span><span class="lr-leader"></span><span class="lr-value">27m</span></div>
+                <div class="lr-bar-track"><div class="lr-bar-fill" style="width:8.7%"></div></div>
               </div>
             </div>
 
-            <button class="btn-primary" data-goto="recap">Build my share card &rarr;</button>
+            <div class="section-label">Disconnected</div>
+            <div class="hero-block">
+              <span class="label">Phone-free, waking hours</span>
+              <span class="value accent">89h 30m</span>
+            </div>
+
+            <blockquote class="note"><b>80% of your waking hours</b> this week were spent away from your phone entirely.</blockquote>
+            <blockquote class="note">Quieter than <b>82% of Disconnect users</b> this week.</blockquote>
+
+            <button class="link-cta" data-goto="recap">Build my share card &rarr;</button>
           </section>
 
           <!-- RECAP / SHARE -->
@@ -762,31 +275,37 @@
             <div class="nav-header">
               <div class="eyebrow">Shareable</div>
               <h2>Your recap</h2>
+              <hr class="rule-double" /><hr class="rule-thin" />
             </div>
 
-            <div class="brag-card">
+            <div class="stamp-card">
+              <div class="stamp">TOP<br>12%<br>QUIET</div>
               <div class="wordmark">The Disconnect</div>
               <div class="weekof">Week of Jul 20&ndash;26, 2026</div>
               <div class="bignum">89h 30m</div>
               <div class="bignum-label">spent disconnected &mdash; 80% of waking hours</div>
-              <span class="rank">Top 12% most disconnected</span>
 
-              <div class="minibars">
-                <div class="minibar-row"><span class="mb-label">Social</span><span class="mb-track"><span class="mb-fill" style="width:53%;background:var(--cat-social)"></span></span><span class="mb-val">5h 10m</span></div>
-                <div class="minibar-row"><span class="mb-label">Streaming</span><span class="mb-track"><span class="mb-fill" style="width:23%;background:var(--cat-stream)"></span></span><span class="mb-val">2h 15m</span></div>
-                <div class="minibar-row"><span class="mb-label">YouTube</span><span class="mb-track"><span class="mb-fill" style="width:19%;background:var(--cat-video)"></span></span><span class="mb-val">1h 50m</span></div>
+              <div class="ledger">
+                <div>
+                  <div class="ledger-row"><span class="lr-label">Social</span><span class="lr-leader"></span><span class="lr-value">5h 10m</span></div>
+                  <div class="lr-bar-track"><div class="lr-bar-fill" style="width:100%"></div></div>
+                </div>
+                <div>
+                  <div class="ledger-row"><span class="lr-label">Streaming</span><span class="lr-leader"></span><span class="lr-value">2h 15m</span></div>
+                  <div class="lr-bar-track"><div class="lr-bar-fill" style="width:43.5%"></div></div>
+                </div>
+                <div>
+                  <div class="ledger-row"><span class="lr-label">YouTube</span><span class="lr-leader"></span><span class="lr-value">1h 50m</span></div>
+                  <div class="lr-bar-track"><div class="lr-bar-fill" style="width:35.5%"></div></div>
+                </div>
               </div>
             </div>
 
-            <div class="section-title">Share to</div>
-            <div class="share-row">
-              <button class="share-btn" data-toast="Prototype &mdash; would open Instagram Stories"><span class="ic">&#128248;</span>Stories</button>
-              <button class="share-btn" data-toast="Prototype &mdash; would open X composer"><span class="ic">&#10024;</span>X</button>
-              <button class="share-btn" data-toast="Prototype &mdash; image saved to Photos"><span class="ic">&#11015;&#65039;</span>Save</button>
-              <button class="share-btn" data-toast="Prototype &mdash; link copied"><span class="ic">&#128279;</span>Copy</button>
-            </div>
-
-            <div class="toast" id="toast">Shared</div>
+            <div class="section-label">Share via</div>
+            <p class="share-line">
+              <button data-toast="Would open Instagram Stories">Stories</button><span class="dot-sep">&middot;</span><button data-toast="Would open X composer">X</button><span class="dot-sep">&middot;</span><button data-toast="Image saved to Photos">Save Image</button><span class="dot-sep">&middot;</span><button data-toast="Link copied">Copy Link</button>
+            </p>
+            <p class="confirm-line" id="confirmLine">&nbsp;</p>
           </section>
 
           <!-- TRENDS -->
@@ -794,32 +313,22 @@
             <div class="nav-header">
               <div class="eyebrow">Last 8 weeks</div>
               <h2>Trends</h2>
+              <hr class="rule-double" /><hr class="rule-thin" />
             </div>
 
-            <div class="card">
-              <div class="row" style="margin-bottom:2px;">
-                <span class="label" style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);">Noise-app hours / week</span>
-              </div>
-              <div class="barchart" id="barchart">
-                <!-- filled by JS -->
-              </div>
-              <button class="table-toggle" id="tableToggle" aria-expanded="false">View as table</button>
-              <table class="data-table" id="dataTable">
-                <thead><tr><th>Week of</th><th>Hours</th></tr></thead>
-                <tbody id="dataTableBody"></tbody>
-              </table>
-            </div>
+            <div class="section-label" style="margin-top:0;">Noise-app hours / week</div>
+            <div class="barchart" id="barchart"></div>
+            <button class="table-toggle" id="tableToggle" aria-expanded="false">View as table</button>
+            <table class="data-table" id="dataTable">
+              <thead><tr><th>Week of</th><th>Hours</th></tr></thead>
+              <tbody id="dataTableBody"></tbody>
+            </table>
 
-            <div class="section-title">Streak</div>
-            <div class="card" style="flex-direction:row;display:flex;align-items:center;gap:14px;">
-              <span style="font-size:26px;">&#128293;</span>
-              <p class="insight" style="margin:0;"><b>4-week streak</b> of cutting noise-app time week over week.</p>
-            </div>
+            <div class="section-label">Streak</div>
+            <blockquote class="note"><b>4-week streak</b> &mdash; cutting noise-app time every week since Jun 29.</blockquote>
 
-            <div class="section-title">Insight</div>
-            <div class="card">
-              <p class="insight">You've cut <b>Social &amp; Streaming</b> time by <b>34%</b> since Jun 8. At this pace you'll be under <b>8h/week</b> by late August.</p>
-            </div>
+            <div class="section-label">Insight</div>
+            <blockquote class="note">You've cut <b>Social &amp; Streaming</b> time by <b>34%</b> since Jun 8. At this pace you'll be under <b>8h/week</b> by late August.</blockquote>
           </section>
 
           <!-- SETTINGS -->
@@ -827,74 +336,35 @@
             <div class="nav-header">
               <div class="eyebrow">Configure</div>
               <h2>Settings</h2>
+              <hr class="rule-double" /><hr class="rule-thin" />
             </div>
 
-            <div class="card" style="margin-bottom:2px;">
-              <div class="row">
-                <span class="status-chip"><span class="dot2"></span>Screen Time connected</span>
-              </div>
+            <div class="status-line"><span class="dot2"></span>Screen Time connected</div>
+
+            <div class="section-label">Tracked as "noise"</div>
+            <div>
+              <div class="list-row"><div class="li-text"><span class="name">Instagram</span><span class="sub">Social</span></div><div class="check on" role="switch" aria-checked="true" tabindex="0"></div></div>
+              <div class="list-row"><div class="li-text"><span class="name">TikTok</span><span class="sub">Social</span></div><div class="check on" role="switch" aria-checked="true" tabindex="0"></div></div>
+              <div class="list-row"><div class="li-text"><span class="name">X</span><span class="sub">Social</span></div><div class="check on" role="switch" aria-checked="true" tabindex="0"></div></div>
+              <div class="list-row"><div class="li-text"><span class="name">Facebook</span><span class="sub">Social</span></div><div class="check" role="switch" aria-checked="false" tabindex="0"></div></div>
+              <div class="list-row"><div class="li-text"><span class="name">Netflix</span><span class="sub">Streaming</span></div><div class="check on" role="switch" aria-checked="true" tabindex="0"></div></div>
+              <div class="list-row"><div class="li-text"><span class="name">YouTube</span><span class="sub">Video</span></div><div class="check on" role="switch" aria-checked="true" tabindex="0"></div></div>
             </div>
 
-            <div class="section-title">Tracked as "noise"</div>
-            <div class="card">
-              <div class="list-row">
-                <div class="li-main"><span class="app-ic" style="background:#D6336C;">IG</span><div class="li-text"><span class="name">Instagram</span><span class="sub">Social</span></div></div>
-                <div class="switch on" role="switch" aria-checked="true" tabindex="0"><span class="knob"></span></div>
-              </div>
-              <div class="list-row">
-                <div class="li-main"><span class="app-ic" style="background:#111;">TT</span><div class="li-text"><span class="name">TikTok</span><span class="sub">Social</span></div></div>
-                <div class="switch on" role="switch" aria-checked="true" tabindex="0"><span class="knob"></span></div>
-              </div>
-              <div class="list-row">
-                <div class="li-main"><span class="app-ic" style="background:#1DA1F2;">X</span><div class="li-text"><span class="name">X</span><span class="sub">Social</span></div></div>
-                <div class="switch on" role="switch" aria-checked="true" tabindex="0"><span class="knob"></span></div>
-              </div>
-              <div class="list-row">
-                <div class="li-main"><span class="app-ic" style="background:#1877F2;">f</span><div class="li-text"><span class="name">Facebook</span><span class="sub">Social</span></div></div>
-                <div class="switch" role="switch" aria-checked="false" tabindex="0"><span class="knob"></span></div>
-              </div>
-              <div class="list-row">
-                <div class="li-main"><span class="app-ic" style="background:#E50914;">N</span><div class="li-text"><span class="name">Netflix</span><span class="sub">Streaming</span></div></div>
-                <div class="switch on" role="switch" aria-checked="true" tabindex="0"><span class="knob"></span></div>
-              </div>
-              <div class="list-row">
-                <div class="li-main"><span class="app-ic" style="background:#FF0000;">YT</span><div class="li-text"><span class="name">YouTube</span><span class="sub">Video</span></div></div>
-                <div class="switch on" role="switch" aria-checked="true" tabindex="0"><span class="knob"></span></div>
-              </div>
-            </div>
-
-            <div class="section-title">Weekly report</div>
-            <div class="card">
-              <div class="list-row">
-                <div class="li-text"><span class="name">Recap notifications</span><span class="sub">Sundays at 6:00 PM</span></div>
-                <div class="switch on" role="switch" aria-checked="true" tabindex="0"><span class="knob"></span></div>
-              </div>
-              <div class="list-row">
-                <div class="li-text"><span class="name">Include watermark on shares</span><span class="sub">Adds "The Disconnect" mark</span></div>
-                <div class="switch on" role="switch" aria-checked="true" tabindex="0"><span class="knob"></span></div>
-              </div>
+            <div class="section-label">Weekly report</div>
+            <div>
+              <div class="list-row"><div class="li-text"><span class="name">Recap notifications</span><span class="sub">Sundays at 6:00 PM</span></div><div class="check on" role="switch" aria-checked="true" tabindex="0"></div></div>
+              <div class="list-row"><div class="li-text"><span class="name">Include watermark on shares</span><span class="sub">Adds "The Disconnect" mark</span></div><div class="check on" role="switch" aria-checked="true" tabindex="0"></div></div>
             </div>
           </section>
 
         </div>
 
         <div class="tabbar" role="tablist">
-          <button class="active" data-tab="home" role="tab" aria-selected="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
-            Home
-          </button>
-          <button data-tab="recap" role="tab" aria-selected="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
-            Recap
-          </button>
-          <button data-tab="trends" role="tab" aria-selected="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9M11 19V5M18 19v-7"/></svg>
-            Trends
-          </button>
-          <button data-tab="settings" role="tab" aria-selected="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.6 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-            Settings
-          </button>
+          <button class="active" data-tab="home" role="tab" aria-selected="true">Home</button><span class="sep">&middot;</span>
+          <button data-tab="recap" role="tab" aria-selected="false">Recap</button><span class="sep">&middot;</span>
+          <button data-tab="trends" role="tab" aria-selected="false">Trends</button><span class="sep">&middot;</span>
+          <button data-tab="settings" role="tab" aria-selected="false">Settings</button>
         </div>
 
       </div>
@@ -903,38 +373,35 @@
     <div class="callouts right">
       <div class="callout">
         <span class="num">Trends</span>
-        <h3>The proof</h3>
-        <p>An 8-week line of your noise-app time trending down, plus streaks to keep you going.</p>
+        <h3>The record</h3>
+        <p>Eight weeks, plotted plain &mdash; thin ink bars on a baseline, the way a paper would run it.</p>
       </div>
       <div class="callout">
         <span class="num">Settings</span>
         <h3>Your definition</h3>
-        <p>You decide what counts as "noise." Screen Time access is requested on-device, per Apple's rules.</p>
+        <p>You decide what counts as noise. Screen Time access is requested on-device, per Apple's rules.</p>
       </div>
     </div>
 
   </div>
 
   <footer class="credit">
-    Interactive prototype with mock data &mdash; built to test the concept and screens before native iOS development. Tap around: tabs, the donut legend, the trend bars, and the share row all respond.
+    Interactive prototype with mock data. Tap around: tabs, the trend bars, the share links, and the checkboxes all respond.
   </footer>
 
 </div>
 
 <script>
-  // Theme toggle
   var root = document.documentElement;
   document.querySelectorAll('[data-theme-btn]').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var mode = btn.getAttribute('data-theme-btn');
-      root.setAttribute('data-theme', mode);
+      root.setAttribute('data-theme', btn.getAttribute('data-theme-btn'));
       document.querySelectorAll('[data-theme-btn]').forEach(function (b) {
         b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
       });
     });
   });
 
-  // Tab navigation
   var tabs = document.querySelectorAll('.tabbar button');
   function goto(name) {
     tabs.forEach(function (t) {
@@ -947,38 +414,29 @@
       if (s.id === 'screen-' + name) s.scrollTop = 0;
     });
   }
-  tabs.forEach(function (t) {
-    t.addEventListener('click', function () { goto(t.getAttribute('data-tab')); });
-  });
-  document.querySelectorAll('[data-goto]').forEach(function (b) {
-    b.addEventListener('click', function () { goto(b.getAttribute('data-goto')); });
-  });
+  tabs.forEach(function (t) { t.addEventListener('click', function () { goto(t.getAttribute('data-tab')); }); });
+  document.querySelectorAll('[data-goto]').forEach(function (b) { b.addEventListener('click', function () { goto(b.getAttribute('data-goto')); }); });
 
-  // Toast on share buttons
-  var toast = document.getElementById('toast');
-  var toastTimer;
+  var confirmLine = document.getElementById('confirmLine');
+  var confirmTimer;
   document.querySelectorAll('[data-toast]').forEach(function (b) {
     b.addEventListener('click', function () {
-      toast.textContent = b.getAttribute('data-toast');
-      toast.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 1800);
+      confirmLine.textContent = b.getAttribute('data-toast') + '.';
+      confirmLine.classList.add('show');
+      clearTimeout(confirmTimer);
+      confirmTimer = setTimeout(function () { confirmLine.classList.remove('show'); }, 2200);
     });
   });
 
-  // Settings switches
-  document.querySelectorAll('.switch').forEach(function (sw) {
+  document.querySelectorAll('.check').forEach(function (c) {
     function toggle() {
-      var on = sw.classList.toggle('on');
-      sw.setAttribute('aria-checked', on ? 'true' : 'false');
+      var on = c.classList.toggle('on');
+      c.setAttribute('aria-checked', on ? 'true' : 'false');
     }
-    sw.addEventListener('click', toggle);
-    sw.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
-    });
+    c.addEventListener('click', toggle);
+    c.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
   });
 
-  // Trend bar chart
   var weeks = [
     { label: 'Jun 1', short: 'Jun', hours: 16.2 },
     { label: 'Jun 8', short: '8', hours: 15.1 },
@@ -996,14 +454,9 @@
     var col = document.createElement('div');
     col.className = 'bar-col' + (w.current ? ' current' : '');
     col.tabIndex = 0;
-    var pct = Math.max(6, (w.hours / max) * 100);
-    col.innerHTML =
-      '<div class="bar" style="height:' + pct + '%">' +
-        '<span class="bar-tooltip">' + w.hours.toFixed(1) + 'h</span>' +
-      '</div>' +
-      '<span class="wk">' + w.short + '</span>';
+    var pct = Math.max(4, (w.hours / max) * 100);
+    col.innerHTML = '<div class="bar" style="height:' + pct + '%"><span class="bar-tooltip">' + w.hours.toFixed(1) + 'h</span></div><span class="wk">' + w.short + '</span>';
     chart.appendChild(col);
-
     var tr = document.createElement('tr');
     tr.innerHTML = '<td>' + w.label + '</td><td>' + w.hours.toFixed(1) + 'h</td>';
     tbody.appendChild(tr);
