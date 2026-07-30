@@ -14,6 +14,7 @@
     --shadow: 0 22px 44px -18px rgba(34,29,21,0.32), 0 6px 14px -8px rgba(34,29,21,0.2);
     --serif: ui-serif, "New York", Georgia, "Iowan Old Style", "Palatino Linotype", serif;
     --type: "Courier New", Courier, ui-monospace, monospace;
+    --grotesk: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
     color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
@@ -137,8 +138,8 @@
     position: relative; margin-top: 4px; padding: 26px 20px 22px;
     border: 1px solid var(--ink); outline: 1px solid var(--rule); outline-offset: 4px;
   }
-  .stamp-card .wordmark { text-align: center; font-family: var(--type); font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3); }
-  .stamp-card .weekof { text-align: center; font-family: var(--type); font-size: 11px; color: var(--ink-3); margin-top: 3px; }
+  .stamp-card .wordmark { text-align: center; font-family: var(--type); font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3); padding-right: 78px; }
+  .stamp-card .weekof { text-align: center; font-family: var(--type); font-size: 11px; color: var(--ink-3); margin-top: 3px; padding-right: 78px; }
   .stamp-card .bignum { text-align: center; font-family: var(--serif); font-size: 42px; font-weight: 600; letter-spacing: -.02em; margin: 16px 0 0; font-variant-numeric: tabular-nums; }
   .stamp-card .bignum-label { text-align: center; font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--ink-2); margin-top: 4px; }
   .stamp {
@@ -147,7 +148,70 @@
     display: flex; align-items: center; justify-content: center; text-align: center;
     font-family: var(--type); font-size: 8.5px; font-weight: 700; letter-spacing: .03em; color: var(--accent); line-height: 1.35;
   }
-  .stamp-card .ledger { margin-top: 22px; padding-top: 16px; border-top: 1px dashed var(--rule); }
+  .stamp-card.style-bold {
+    background: var(--accent); border-color: var(--accent); outline-color: transparent;
+    box-shadow: 0 16px 30px -12px rgba(0,0,0,0.4);
+  }
+  .stamp-card.style-bold .wordmark, .stamp-card.style-bold .weekof, .stamp-card.style-bold .bignum-label { color: rgba(247,239,228,0.72); }
+  .stamp-card.style-bold .bignum { color: #F7EFE4; font-family: var(--grotesk); font-weight: 800; }
+  .stamp-card.style-bold .stamp { border-color: #F7EFE4; color: #F7EFE4; }
+
+  .style-toggle { text-align: center; font-family: var(--type); font-size: 11.5px; color: var(--ink-3); margin: 0 0 14px; }
+  .style-toggle button { font-family: var(--type); font-size: 11.5px; background: none; border: none; color: var(--ink-3); cursor: pointer; padding: 2px 4px; }
+  .style-toggle button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* Heat grid — the "route map" equivalent: a week of ticks, solid where phone-free */
+  .heat-grid { display: flex; flex-direction: column; gap: 5px; margin: 20px 0 4px; }
+  .heat-row { display: flex; align-items: center; gap: 8px; }
+  .heat-day { width: 13px; font-family: var(--type); font-size: 9.5px; color: var(--ink-3); flex-shrink: 0; }
+  .style-bold .heat-day { color: rgba(247,239,228,0.55); }
+  .heat-ticks { flex: 1; display: flex; gap: 2px; }
+  .tick { flex: 1; height: 13px; background: var(--rule-soft); border: 1px solid var(--rule); }
+  .tick.away { background: var(--ink); border-color: var(--ink); }
+  .style-bold .tick { background: rgba(247,239,228,0.16); border-color: rgba(247,239,228,0.3); }
+  .style-bold .tick.away { background: #F7EFE4; border-color: #F7EFE4; }
+
+  /* Stat grid — Strava-style metric tiles */
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; margin-top: 18px; }
+  .stat-num { font-family: var(--grotesk); font-weight: 800; font-size: 19px; letter-spacing: -.01em; font-variant-numeric: tabular-nums; display: block; }
+  .stat-label { font-family: var(--type); font-size: 9.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-3); margin-top: 2px; display: block; }
+  .style-bold .stat-num { color: #F7EFE4; }
+  .style-bold .stat-label { color: rgba(247,239,228,0.6); }
+
+  /* Kudos */
+  .kudos-row { display: flex; align-items: center; justify-content: space-between; margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--rule); }
+  .style-bold .kudos-row { border-top-color: rgba(247,239,228,0.3); }
+  .kudos-left { display: flex; align-items: center; gap: 8px; }
+  .kudos-mark { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .kudos-mark svg { width: 10px; height: 10px; stroke: var(--ink); }
+  .style-bold .kudos-mark { border-color: #F7EFE4; }
+  .style-bold .kudos-mark svg { stroke: #F7EFE4; }
+  .kudos-count { font-family: var(--grotesk); font-weight: 800; font-size: 14px; }
+  .kudos-label { font-family: var(--type); font-size: 10px; color: var(--ink-3); margin-left: 4px; }
+  .style-bold .kudos-count { color: #F7EFE4; }
+  .style-bold .kudos-label { color: rgba(247,239,228,0.6); }
+  .kudos-btn { font-family: var(--type); font-size: 10px; letter-spacing: .05em; text-transform: uppercase; border: 1px solid var(--ink); background: none; color: var(--ink); padding: 6px 10px; cursor: pointer; }
+  .kudos-btn.given { background: var(--ink); color: var(--page); }
+  .style-bold .kudos-btn { border-color: #F7EFE4; color: #F7EFE4; }
+  .style-bold .kudos-btn.given { background: #F7EFE4; color: var(--accent); }
+
+  /* Session feed (Home) — individual disconnect "activities" */
+  .session-list { display: flex; flex-direction: column; margin-top: 8px; }
+  .session-card { padding: 13px 0; border-bottom: 1px solid var(--rule-soft); }
+  .session-card:last-child { border-bottom: none; }
+  .session-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .session-name { font-family: var(--serif); font-size: 14.5px; font-weight: 600; }
+  .session-dur { font-family: var(--grotesk); font-weight: 800; font-size: 14px; white-space: nowrap; }
+  .session-time { font-family: var(--type); font-size: 10px; color: var(--ink-3); margin-top: 1px; }
+  .session-strip { height: 6px; background: var(--rule-soft); margin-top: 9px; position: relative; }
+  .session-strip .fill { position: absolute; top: 0; bottom: 0; background: var(--ink); }
+  .session-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+  .session-kudos { display: flex; align-items: center; gap: 7px; }
+  .session-kudos-btn { width: 21px; height: 21px; border-radius: 50%; border: 1.5px solid var(--rule); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; flex-shrink: 0; }
+  .session-kudos-btn svg { width: 10px; height: 10px; stroke: var(--ink-3); }
+  .session-kudos-btn.given { border-color: var(--accent); }
+  .session-kudos-btn.given svg { stroke: var(--accent); }
+  .session-kudos-count { font-family: var(--type); font-size: 10.5px; color: var(--ink-2); }
 
   .share-line { font-size: 13.5px; color: var(--ink-2); margin-top: 4px; line-height: 1.8; }
   .share-line button { font-family: var(--serif); font-size: 13.5px; background: none; border: none; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 0; }
@@ -214,7 +278,7 @@
       <div class="callout">
         <span class="num">Recap</span>
         <h3>The stamp</h3>
-        <p>A printed-style card built to be screenshotted &mdash; a rank, a total, and nothing that looks like the apps it's tracking.</p>
+        <p>Strava logic, applied here: a headline stat, a week-shaped "route," and kudos from friends &mdash; built to be posted, not just glanced at.</p>
       </div>
     </div>
 
@@ -267,6 +331,43 @@
             <blockquote class="note"><b>80% of your waking hours</b> this week were spent away from your phone entirely.</blockquote>
             <blockquote class="note">Quieter than <b>82% of Disconnect users</b> this week.</blockquote>
 
+            <div class="section-label">Today's sessions</div>
+            <div class="session-list">
+              <div class="session-card">
+                <div class="session-top"><span class="session-name">Morning Reset</span><span class="session-dur">3h 10m</span></div>
+                <div class="session-time">6:30 &ndash; 9:40 AM</div>
+                <div class="session-strip"><div class="fill" style="left:27.1%;width:13.2%"></div></div>
+                <div class="session-bottom">
+                  <div class="session-kudos">
+                    <button class="session-kudos-btn" data-count="12"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></button>
+                    <span class="session-kudos-count">12 nods</span>
+                  </div>
+                </div>
+              </div>
+              <div class="session-card">
+                <div class="session-top"><span class="session-name">Deep Work Block</span><span class="session-dur">2h 15m</span></div>
+                <div class="session-time">1:00 &ndash; 3:15 PM</div>
+                <div class="session-strip"><div class="fill" style="left:54.2%;width:9.4%"></div></div>
+                <div class="session-bottom">
+                  <div class="session-kudos">
+                    <button class="session-kudos-btn" data-count="8"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></button>
+                    <span class="session-kudos-count">8 nods</span>
+                  </div>
+                </div>
+              </div>
+              <div class="session-card">
+                <div class="session-top"><span class="session-name">Evening Walk</span><span class="session-dur">1h 05m</span></div>
+                <div class="session-time">7:00 &ndash; 8:05 PM</div>
+                <div class="session-strip"><div class="fill" style="left:79.2%;width:4.5%"></div></div>
+                <div class="session-bottom">
+                  <div class="session-kudos">
+                    <button class="session-kudos-btn" data-count="15"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></button>
+                    <span class="session-kudos-count">15 nods</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <button class="link-cta" data-goto="recap">Build my share card &rarr;</button>
           </section>
 
@@ -278,26 +379,32 @@
               <hr class="rule-double" /><hr class="rule-thin" />
             </div>
 
-            <div class="stamp-card">
+            <div class="style-toggle" role="group" aria-label="Card style">
+              <button type="button" data-style-btn="bold" aria-pressed="true">Bold</button> &middot; <button type="button" data-style-btn="quiet" aria-pressed="false">Quiet</button>
+            </div>
+
+            <div class="stamp-card style-bold" id="stampCard">
               <div class="stamp">TOP<br>12%<br>QUIET</div>
               <div class="wordmark">The Disconnect</div>
               <div class="weekof">Week of Jul 20&ndash;26, 2026</div>
               <div class="bignum">89h 30m</div>
-              <div class="bignum-label">spent disconnected &mdash; 80% of waking hours</div>
+              <div class="bignum-label">disconnected &mdash; 80% of waking hours</div>
 
-              <div class="ledger">
-                <div>
-                  <div class="ledger-row"><span class="lr-label">Social</span><span class="lr-leader"></span><span class="lr-value">5h 10m</span></div>
-                  <div class="lr-bar-track"><div class="lr-bar-fill" style="width:100%"></div></div>
+              <div class="heat-grid" id="heatGrid"></div>
+
+              <div class="stat-grid">
+                <div><span class="stat-num">9h 42m</span><span class="stat-label">Noise this week</span></div>
+                <div><span class="stat-num">14h 20m</span><span class="stat-label">Longest stretch</span></div>
+                <div><span class="stat-num">Top 12%</span><span class="stat-label">Rank vs. friends</span></div>
+                <div><span class="stat-num">4 weeks</span><span class="stat-label">Streak</span></div>
+              </div>
+
+              <div class="kudos-row">
+                <div class="kudos-left">
+                  <span class="kudos-mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span>
+                  <span class="kudos-count" id="kudosCount">128</span><span class="kudos-label">nods from friends</span>
                 </div>
-                <div>
-                  <div class="ledger-row"><span class="lr-label">Streaming</span><span class="lr-leader"></span><span class="lr-value">2h 15m</span></div>
-                  <div class="lr-bar-track"><div class="lr-bar-fill" style="width:43.5%"></div></div>
-                </div>
-                <div>
-                  <div class="ledger-row"><span class="lr-label">YouTube</span><span class="lr-leader"></span><span class="lr-value">1h 50m</span></div>
-                  <div class="lr-bar-track"><div class="lr-bar-fill" style="width:35.5%"></div></div>
-                </div>
+                <button class="kudos-btn" id="kudosBtn">Cheer</button>
               </div>
             </div>
 
@@ -425,6 +532,56 @@
       confirmLine.classList.add('show');
       clearTimeout(confirmTimer);
       confirmTimer = setTimeout(function () { confirmLine.classList.remove('show'); }, 2200);
+    });
+  });
+
+  var stampCard = document.getElementById('stampCard');
+  document.querySelectorAll('[data-style-btn]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      stampCard.className = 'stamp-card style-' + btn.getAttribute('data-style-btn');
+      document.querySelectorAll('[data-style-btn]').forEach(function (b) {
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+    });
+  });
+
+  // Heat grid: 7 days x 16 waking-hour ticks (7am-10pm). '1' = away from phone, '0' = on a noise app.
+  var heatWeek = [
+    { day: 'M', pattern: '1111111011111111' },
+    { day: 'T', pattern: '1111111111101111' },
+    { day: 'W', pattern: '1111101111111111' },
+    { day: 'T', pattern: '1111111111111101' },
+    { day: 'F', pattern: '1110111111110111' },
+    { day: 'S', pattern: '1111111111111111' },
+    { day: 'S', pattern: '1111111111011111' }
+  ];
+  var heatGrid = document.getElementById('heatGrid');
+  heatWeek.forEach(function (row) {
+    var rowEl = document.createElement('div');
+    rowEl.className = 'heat-row';
+    var ticksHtml = '';
+    for (var i = 0; i < row.pattern.length; i++) {
+      ticksHtml += '<span class="tick' + (row.pattern[i] === '1' ? ' away' : '') + '"></span>';
+    }
+    rowEl.innerHTML = '<span class="heat-day">' + row.day + '</span><span class="heat-ticks">' + ticksHtml + '</span>';
+    heatGrid.appendChild(rowEl);
+  });
+
+  var kudosCount = document.getElementById('kudosCount');
+  var kudosBtn = document.getElementById('kudosBtn');
+  kudosBtn.addEventListener('click', function () {
+    var given = kudosBtn.classList.toggle('given');
+    var n = parseInt(kudosCount.textContent, 10);
+    kudosCount.textContent = given ? n + 1 : n - 1;
+    kudosBtn.textContent = given ? 'Cheered' : 'Cheer';
+  });
+
+  document.querySelectorAll('.session-kudos-btn').forEach(function (btn) {
+    var base = parseInt(btn.getAttribute('data-count'), 10);
+    btn.addEventListener('click', function () {
+      var given = btn.classList.toggle('given');
+      var countEl = btn.parentElement.querySelector('.session-kudos-count');
+      countEl.textContent = (given ? base + 1 : base) + ' nods';
     });
   });
 
