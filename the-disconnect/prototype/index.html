@@ -213,6 +213,29 @@
   .session-kudos-btn.given svg { stroke: var(--accent); }
   .session-kudos-count { font-family: var(--type); font-size: 10.5px; color: var(--ink-2); }
 
+  /* Leaderboard */
+  .board-summary { font-size: 13.5px; color: var(--ink-2); line-height: 1.55; margin: 4px 0 4px; }
+  .board-summary b { color: var(--ink); }
+  .board-list { display: flex; flex-direction: column; margin-top: 8px; }
+  .board-row { display: flex; align-items: center; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--rule-soft); }
+  .board-row:last-child { border-bottom: none; }
+  .board-row.me { background: var(--accent-soft); margin: 0 -22px; padding: 11px 22px; border-bottom: none; }
+  .board-rank { font-family: var(--grotesk); font-weight: 800; font-size: 12.5px; color: var(--ink-3); width: 16px; flex-shrink: 0; }
+  .board-row.me .board-rank { color: var(--accent); }
+  .board-avatar {
+    width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--ink-3); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-family: var(--type); font-size: 9.5px; font-weight: 700; color: var(--ink-2);
+  }
+  .board-row.me .board-avatar { border-color: var(--accent); color: var(--accent); }
+  .board-name { flex: 1; font-family: var(--serif); font-size: 14px; }
+  .board-row.me .board-name { font-weight: 700; }
+  .board-hours { font-family: var(--grotesk); font-weight: 800; font-size: 13px; font-variant-numeric: tabular-nums; }
+  .board-you-tag { font-family: var(--type); font-size: 9px; letter-spacing: .05em; text-transform: uppercase; color: var(--accent); width: 22px; flex-shrink: 0; text-align: right; }
+  .board-kudos-btn { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--rule); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; flex-shrink: 0; }
+  .board-kudos-btn svg { width: 10px; height: 10px; stroke: var(--ink-3); }
+  .board-kudos-btn.given { border-color: var(--accent); }
+  .board-kudos-btn.given svg { stroke: var(--accent); }
+
   .share-line { font-size: 13.5px; color: var(--ink-2); margin-top: 4px; line-height: 1.8; }
   .share-line button { font-family: var(--serif); font-size: 13.5px; background: none; border: none; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 0; }
   .share-line .dot-sep { color: var(--rule); padding: 0 6px; }
@@ -371,6 +394,65 @@
             <button class="link-cta" data-goto="recap">Build my share card &rarr;</button>
           </section>
 
+          <!-- LEADERBOARD -->
+          <section class="screen" id="screen-board" aria-label="Leaderboard">
+            <div class="nav-header">
+              <div class="eyebrow">Friends &middot; this week</div>
+              <h2>Leaderboard</h2>
+              <hr class="rule-double" /><hr class="rule-thin" />
+            </div>
+
+            <p class="board-summary">You're <b>#4 of 6</b> friends &mdash; ranked by phone-free waking hours. Higher is quieter.</p>
+
+            <div class="board-list">
+              <div class="board-row">
+                <span class="board-rank">1</span>
+                <span class="board-avatar">PR</span>
+                <span class="board-name">Priya</span>
+                <span class="board-hours">96h 10m</span>
+                <button class="board-kudos-btn" data-count="4"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></button>
+              </div>
+              <div class="board-row">
+                <span class="board-rank">2</span>
+                <span class="board-avatar">MC</span>
+                <span class="board-name">Marcus</span>
+                <span class="board-hours">93h 45m</span>
+                <button class="board-kudos-btn" data-count="2"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></button>
+              </div>
+              <div class="board-row">
+                <span class="board-rank">3</span>
+                <span class="board-avatar">WR</span>
+                <span class="board-name">Wren</span>
+                <span class="board-hours">91h 20m</span>
+                <button class="board-kudos-btn" data-count="7"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></button>
+              </div>
+              <div class="board-row me">
+                <span class="board-rank">4</span>
+                <span class="board-avatar">YOU</span>
+                <span class="board-name">You</span>
+                <span class="board-hours">89h 30m</span>
+                <span class="board-you-tag">this week</span>
+              </div>
+              <div class="board-row">
+                <span class="board-rank">5</span>
+                <span class="board-avatar">DV</span>
+                <span class="board-name">Dev</span>
+                <span class="board-hours">85h 05m</span>
+                <button class="board-kudos-btn" data-count="1"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></button>
+              </div>
+              <div class="board-row">
+                <span class="board-rank">6</span>
+                <span class="board-avatar">AL</span>
+                <span class="board-name">Alicia</span>
+                <span class="board-hours">81h 40m</span>
+                <button class="board-kudos-btn" data-count="0"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></button>
+              </div>
+            </div>
+
+            <div class="section-label">Insight</div>
+            <blockquote class="note">You've closed the gap to <b>#3</b> by <b>2h 40m</b> since last week &mdash; one more quiet evening and you'll pass Wren.</blockquote>
+          </section>
+
           <!-- RECAP / SHARE -->
           <section class="screen" id="screen-recap" aria-label="Recap and share">
             <div class="nav-header">
@@ -469,6 +551,7 @@
 
         <div class="tabbar" role="tablist">
           <button class="active" data-tab="home" role="tab" aria-selected="true">Home</button><span class="sep">&middot;</span>
+          <button data-tab="board" role="tab" aria-selected="false">Board</button><span class="sep">&middot;</span>
           <button data-tab="recap" role="tab" aria-selected="false">Recap</button><span class="sep">&middot;</span>
           <button data-tab="trends" role="tab" aria-selected="false">Trends</button><span class="sep">&middot;</span>
           <button data-tab="settings" role="tab" aria-selected="false">Settings</button>
@@ -583,6 +666,10 @@
       var countEl = btn.parentElement.querySelector('.session-kudos-count');
       countEl.textContent = (given ? base + 1 : base) + ' nods';
     });
+  });
+
+  document.querySelectorAll('.board-kudos-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () { btn.classList.toggle('given'); });
   });
 
   document.querySelectorAll('.check').forEach(function (c) {
