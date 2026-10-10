@@ -12,6 +12,8 @@ on:
 jobs:
   build:
     runs-on: macos-latest
+    permissions:
+      contents: write
     defaults:
       run:
         working-directory: the-disconnect/ios
@@ -68,9 +70,14 @@ jobs:
           mkdir -p screenshots
           xcrun simctl io "$UDID" screenshot screenshots/home.png
 
-      - name: Upload screenshot
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-screenshot
-          path: the-disconnect/ios/screenshots/*.png
-          if-no-files-found: error
+      - name: Commit screenshot to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add screenshots/home.png
+          if git diff --cached --quiet; then
+            echo "No screenshot changes to commit"
+          else
+            git commit -m "ci: update app screenshot [skip ci]"
+            git push origin HEAD:claude/app-build-jpvszj
+          fi
