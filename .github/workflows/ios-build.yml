@@ -41,5 +41,36 @@ jobs:
             -scheme TheDisconnect \
             -destination 'generic/platform=iOS Simulator' \
             -configuration Debug \
+            -derivedDataPath DerivedData \
             CODE_SIGNING_ALLOWED=NO \
             build
+
+      - name: Boot simulator and capture a screenshot
+        run: |
+          UDID=$(xcrun simctl list devices available -j | jq -r '
+            .devices
+            | to_entries[]
+            | select(.key | contains("iOS"))
+            | .value[]
+            | select(.name | contains("iPhone"))
+            | .udid
+          ' | head -1)
+          echo "Using simulator UDID: $UDID"
+          xcrun simctl boot "$UDID"
+          xcrun simctl bootstatus "$UDID" -b
+
+          APP_PATH=$(find DerivedData/Build/Products/Debug-iphonesimulator -maxdepth 1 -name "*.app" | head -1)
+          echo "App bundle: $APP_PATH"
+          xcrun simctl install "$UDID" "$APP_PATH"
+          xcrun simctl launch "$UDID" com.thedisconnect.app
+
+          sleep 5
+          mkdir -p screenshots
+          xcrun simctl io "$UDID" screenshot screenshots/home.png
+
+      - name: Upload screenshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-screenshot
+          path: the-disconnect/ios/screenshots/*.png
+          if-no-files-found: error
