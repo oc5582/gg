@@ -1,5 +1,7 @@
 # The Disconnect — iOS app
 
+[![iOS build check](https://github.com/oc5582/gg/actions/workflows/ios-build.yml/badge.svg?branch=claude/app-build-jpvszj)](https://github.com/oc5582/gg/actions/workflows/ios-build.yml)
+
 A real SwiftUI app, not another mockup: five working tabs (Home, Board, Recap, Trends,
 Settings), running on realistic mock data, with genuine device functionality wired in —
 sharing, notifications, and a real Screen Time authorization request. See
